@@ -1,0 +1,543 @@
+{
+ "experiment": "e2e",
+ "params": {
+  "count": 10,
+  "latency": "realistic",
+  "mode": "baseline",
+  "network": "wan",
+  "timeouts": "default",
+  "validators": 4
+ },
+ "started_at": "2026-09-29T22:51:45.871895-04:00",
+ "duration_ns": 304331927083,
+ "samples": [
+  {
+   "i": 0,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 4,
+    "tx_id": "aa4afd5eb8d81140e52165562225d55244ab803947112bade326764b9dc21e52",
+    "tx_bytes": 2733,
+    "bundle_bytes": 2386,
+    "request_bytes": 4323,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 144916,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 83958,
+     "admit_ns": 393792,
+     "commit_ns": 29683915417,
+     "total_ns": 29684605708
+    },
+    "decided_at": "2026-09-29T22:52:20.144814-04:00"
+   },
+   "submitted_at": "2026-09-29T22:51:50.460097-04:00",
+   "decided_first_ns": 29626048000,
+   "decided_all_ns": 29702139000,
+   "rounds": 5
+  },
+  {
+   "i": 1,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 5,
+    "tx_id": "551111aec68cb90efabc7c04c8439fd184fde9a7cf8bc8db5315d694c7be0d35",
+    "tx_bytes": 2767,
+    "bundle_bytes": 2420,
+    "request_bytes": 4323,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 61917,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 53542,
+     "admit_ns": 132792,
+     "commit_ns": 29100111333,
+     "total_ns": 29100417000
+    },
+    "decided_at": "2026-09-29T22:52:49.265577-04:00"
+   },
+   "submitted_at": "2026-09-29T22:52:20.16505-04:00",
+   "decided_first_ns": 29060205000,
+   "decided_all_ns": 29257000000,
+   "rounds": 5
+  },
+  {
+   "i": 2,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 6,
+    "tx_id": "e992e23716f5dce44959fcee943cc258328ef0d0aaea5366f5c3aad2989f0186",
+    "tx_bytes": 2801,
+    "bundle_bytes": 2454,
+    "request_bytes": 4323,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 56708,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 51916,
+     "admit_ns": 144125,
+     "commit_ns": 29166487375,
+     "total_ns": 29166796375
+    },
+    "decided_at": "2026-09-29T22:53:18.59342-04:00"
+   },
+   "submitted_at": "2026-09-29T22:52:49.426513-04:00",
+   "decided_first_ns": 29128132000,
+   "decided_all_ns": 29225175000,
+   "rounds": 5
+  },
+  {
+   "i": 3,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 7,
+    "tx_id": "5ac6f0a556b6e63567662583d3bdfeb79142e01bce1db614f615b440b7cc4c6d",
+    "tx_bytes": 2835,
+    "bundle_bytes": 2488,
+    "request_bytes": 4323,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 61542,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 57958,
+     "admit_ns": 164500,
+     "commit_ns": 30102040000,
+     "total_ns": 30102361709
+    },
+    "decided_at": "2026-09-29T22:53:48.75436-04:00"
+   },
+   "submitted_at": "2026-09-29T22:53:18.651885-04:00",
+   "decided_first_ns": 30012764000,
+   "decided_all_ns": 30110758000,
+   "rounds": 5
+  },
+  {
+   "i": 4,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 8,
+    "tx_id": "9652f128fe4174f30fbb6529c3c90a876af747126bd03123f162fac4788e2864",
+    "tx_bytes": 2869,
+    "bundle_bytes": 2522,
+    "request_bytes": 4323,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 71458,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 90125,
+     "admit_ns": 334084,
+     "commit_ns": 29453744208,
+     "total_ns": 29454299334
+    },
+    "decided_at": "2026-09-29T22:54:18.219376-04:00"
+   },
+   "submitted_at": "2026-09-29T22:53:48.764965-04:00",
+   "decided_first_ns": 29410460000,
+   "decided_all_ns": 29733663000,
+   "rounds": 5
+  },
+  {
+   "i": 5,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 9,
+    "tx_id": "ef0a6f7dc1d8d4d61523c238b65fd2063b7e84bea1dbb331ce05ed07f9960f07",
+    "tx_bytes": 2869,
+    "bundle_bytes": 2522,
+    "request_bytes": 6474,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 420792,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 97833,
+     "admit_ns": 467250,
+     "commit_ns": 31942209125,
+     "total_ns": 31943260083
+    },
+    "decided_at": "2026-09-29T22:54:50.442839-04:00"
+   },
+   "submitted_at": "2026-09-29T22:54:18.499459-04:00",
+   "decided_first_ns": 31902373000,
+   "decided_all_ns": 31995995000,
+   "rounds": 5
+  },
+  {
+   "i": 6,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 10,
+    "tx_id": "125a2353f1a6c429f4603907c5e42303aa2ee153c12c0f9f950bb32caa042ae8",
+    "tx_bytes": 2869,
+    "bundle_bytes": 2522,
+    "request_bytes": 6474,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 267042,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 118334,
+     "admit_ns": 403500,
+     "commit_ns": 29981379542,
+     "total_ns": 29982265292
+    },
+    "decided_at": "2026-09-29T22:55:20.483093-04:00"
+   },
+   "submitted_at": "2026-09-29T22:54:50.500713-04:00",
+   "decided_first_ns": 29962263000,
+   "decided_all_ns": 30019155000,
+   "rounds": 5
+  },
+  {
+   "i": 7,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 11,
+    "tx_id": "18028fb39f987fce23d2e5dd64f77499dc4cfb8eb8d21bfbd3bd4688d444a4ed",
+    "tx_bytes": 2869,
+    "bundle_bytes": 2522,
+    "request_bytes": 6474,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 172875,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 48750,
+     "admit_ns": 184541,
+     "commit_ns": 31220084333,
+     "total_ns": 31220539458
+    },
+    "decided_at": "2026-09-29T22:55:51.744259-04:00"
+   },
+   "submitted_at": "2026-09-29T22:55:20.523602-04:00",
+   "decided_first_ns": 31150722000,
+   "decided_all_ns": 31208717000,
+   "rounds": 5
+  },
+  {
+   "i": 8,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 12,
+    "tx_id": "2086aea8ed64239c1a3e67248aff29f7631bc08eb5987bc1710f86edaf3474cb",
+    "tx_bytes": 2869,
+    "bundle_bytes": 2522,
+    "request_bytes": 6474,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 144709,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 58209,
+     "admit_ns": 226042,
+     "commit_ns": 29660354417,
+     "total_ns": 29660832167
+    },
+    "decided_at": "2026-09-29T22:56:21.405446-04:00"
+   },
+   "submitted_at": "2026-09-29T22:55:51.744502-04:00",
+   "decided_first_ns": 29645330000,
+   "decided_all_ns": 29775238000,
+   "rounds": 5
+  },
+  {
+   "i": 9,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 13,
+    "tx_id": "5795b2ae422bce8a6df6b75314530370a03fc6fc00d5c266dcb1617dcdacb006",
+    "tx_bytes": 2869,
+    "bundle_bytes": 2522,
+    "request_bytes": 6474,
+    "receipt_bytes": 4,
+    "reviewed": false,
+    "approved": false,
+    "timeline": {
+     "prepare_ns": 100875,
+     "intent_ns": 0,
+     "attest_ns": 0,
+     "upstream_ns": 0,
+     "attest_overhead_ns": 0,
+     "present_ns": 40750,
+     "admit_ns": 352208,
+     "commit_ns": 28642817292,
+     "total_ns": 28643347792
+    },
+    "decided_at": "2026-09-29T22:56:50.164222-04:00"
+   },
+   "submitted_at": "2026-09-29T22:56:21.520766-04:00",
+   "decided_first_ns": 28610853000,
+   "decided_all_ns": 28673046000,
+   "rounds": 5
+  }
+ ],
+ "summary": {
+  "app_stats": [
+   {
+    "verify_count": 0,
+    "verify_ok": 0,
+    "verify_nanos": null,
+    "check_codes": {
+     "ok": 11
+    },
+    "final_codes": {
+     "ok": 11
+    },
+    "rejected_proposals": 0,
+    "baseline_calls": 10,
+    "baseline_errors": 0,
+    "baseline_nanos": [
+     6069103667,
+     5703627625,
+     6325245750,
+     7130669666,
+     6671436958,
+     6317545000,
+     6187156500,
+     6154312875,
+     7149201375,
+     6450159333
+    ],
+    "cache_hits": 0,
+    "cache_misses": 0
+   },
+   {
+    "verify_count": 0,
+    "verify_ok": 0,
+    "verify_nanos": null,
+    "check_codes": {
+     "ok": 11
+    },
+    "final_codes": {
+     "ok": 11
+    },
+    "rejected_proposals": 0,
+    "baseline_calls": 10,
+    "baseline_errors": 0,
+    "baseline_nanos": [
+     6856303167,
+     6577590042,
+     7152499458,
+     6159216541,
+     6032861875,
+     6309762583,
+     6874679375,
+     6322118042,
+     5767805875,
+     6190120291
+    ],
+    "cache_hits": 0,
+    "cache_misses": 0
+   },
+   {
+    "verify_count": 0,
+    "verify_ok": 0,
+    "verify_nanos": null,
+    "check_codes": {
+     "ok": 11
+    },
+    "final_codes": {
+     "ok": 11
+    },
+    "rejected_proposals": 0,
+    "baseline_calls": 10,
+    "baseline_errors": 0,
+    "baseline_nanos": [
+     6675984500,
+     6826838292,
+     6106354333,
+     7375336208,
+     6276881000,
+     6789004625,
+     5798893292,
+     6060534041,
+     6521645291,
+     6144638833
+    ],
+    "cache_hits": 0,
+    "cache_misses": 0
+   },
+   {
+    "verify_count": 0,
+    "verify_ok": 0,
+    "verify_nanos": null,
+    "check_codes": {
+     "ok": 11
+    },
+    "final_codes": {
+     "ok": 11
+    },
+    "rejected_proposals": 0,
+    "baseline_calls": 10,
+    "baseline_errors": 0,
+    "baseline_nanos": [
+     7040112375,
+     6052862416,
+     6457130209,
+     5985491333,
+     7053052292,
+     6951548292,
+     6641386750,
+     5793198083,
+     5732909541,
+     6836548833
+    ],
+    "cache_hits": 0,
+    "cache_misses": 0
+   }
+  ],
+  "attest_overhead": {
+   "max_ms": 0,
+   "mean_ms": 0,
+   "min_ms": 0,
+   "n": 10,
+   "p50_ms": 0,
+   "p90_ms": 0,
+   "p99_ms": 0
+  },
+  "avg_receipt_bytes": 4,
+  "avg_request_bytes": 5398.5,
+  "avg_tx_bytes": 2835,
+  "block_interval": "11 intervals (heights 2..13): mean 27.376s median 29.679s p95 31.247s min 1.417s max 32.239s",
+  "client_prepare": {
+   "max_ms": 0.518625,
+   "mean_ms": 0.2204209,
+   "min_ms": 0.108624,
+   "n": 10,
+   "p50_ms": 0.161583,
+   "p90_ms": 0.385376,
+   "p99_ms": 0.518625
+  },
+  "commit": {
+   "max_ms": 31942.209125,
+   "mean_ms": 29895.3143042,
+   "min_ms": 28642.817292,
+   "n": 10,
+   "p50_ms": 29660.354417,
+   "p90_ms": 31220.084333,
+   "p99_ms": 31942.209125
+  },
+  "decided_all": {
+   "max_ms": 31995.995,
+   "mean_ms": 29970.0886,
+   "min_ms": 28673.046,
+   "n": 10,
+   "p50_ms": 29733.663,
+   "p90_ms": 31208.717,
+   "p99_ms": 31995.995
+  },
+  "decided_first": {
+   "max_ms": 31902.373,
+   "mean_ms": 29850.915,
+   "min_ms": 28610.853,
+   "n": 10,
+   "p50_ms": 29626.048,
+   "p90_ms": 31150.722,
+   "p99_ms": 31902.373
+  },
+  "failed": 0,
+  "llm_calls_per_accepted": 4,
+  "llm_upstream": {
+   "max_ms": 0,
+   "mean_ms": 0,
+   "min_ms": 0,
+   "n": 10,
+   "p50_ms": 0,
+   "p90_ms": 0,
+   "p99_ms": 0
+  },
+  "ok": 10,
+  "provider": {
+   "calls": 40,
+   "completed": 40,
+   "approved": 40,
+   "rejected": 0,
+   "truncated": 0,
+   "no_tool_call": 0,
+   "safety_refused": 0,
+   "auth_failures": 0,
+   "bad_requests": 0,
+   "overloaded": 0,
+   "server_errors": 0,
+   "canceled": 0,
+   "input_tokens": 54000,
+   "output_tokens": 12160,
+   "cost_usd": 0.3444,
+   "simulated_latency_ns": 257183416172,
+   "per_model": {
+    "mock-reviewer-medium": {
+     "calls": 40,
+     "input_tokens": 54000,
+     "output_tokens": 12160,
+     "cost_usd": 0.3444
+    }
+   }
+  },
+  "rounds_histogram": {
+   "5": 10
+  },
+  "total": {
+   "max_ms": 31943.260083,
+   "mean_ms": 29895.8724918,
+   "min_ms": 28643.347792,
+   "n": 10,
+   "p50_ms": 29660.832167,
+   "p90_ms": 31220.539458,
+   "p99_ms": 31943.260083
+  }
+ },
+ "notes": [
+  "INVARIANT VIOLATION: 40 INVARIANT VIOLATION(S) (compared: 78 blocks, 78 commit records, 84 states; walked 44 history entries, 136 objects; 33 prefix entries; 7ms)\n  node 0: running, honest, height 13, app hash 136a0fe62b3735db, 1 branches, 13 commit records\n  node 1: running, honest, height 13, app hash 136a0fe62b3735db, 1 branches, 13 commit records\n  node 2: running, honest, height 13, app hash 136a0fe62b3735db, 1 branches, 13 commit records\n  node 3: running, honest, height 13, app hash 136a0fe62b3735db, 1 branches, 13 commit records\n  VIOLATION [validity] node 0 height 4 bench/main #2: accepted without a receipt\n  VIOLATION [validity] node 1 height 4 bench/main #2: accepted without a receipt\n  VIOLATION [validity] node 2 height 4 bench/main #2: accepted without a receipt\n  VIOLATION [validity] node 3 height 4 bench/main #2: accepted without a receipt\n  VIOLATION [validity] node 0 height 5 bench/main #3: accepted without a receipt\n  VIOLATION [validity] node 1 height 5 bench/main #3: accepted without a receipt\n  VIOLATION [validity] node 2 height 5 bench/main #3: accepted without a receipt\n  VIOLATION [validity] node 3 height 5 bench/main #3: accepted without a receipt\n  VIOLATION [validity] node 0 height 6 bench/main #4: accepted without a receipt\n  VIOLATION [validity] node 1 height 6 bench/main #4: accepted without a receipt\n  VIOLATION [validity] node 2 height 6 bench/main #4: accepted without a receipt\n  VIOLATION [validity] node 3 height 6 bench/main #4: accepted without a receipt\n  VIOLATION [validity] node 0 height 7 bench/main #5: accepted without a receipt\n  VIOLATION [validity] node 1 height 7 bench/main #5: accepted without a receipt\n  VIOLATION [validity] node 2 height 7 bench/main #5: accepted without a receipt\n  VIOLATION [validity] node 3 height 7 bench/main #5: accepted without a receipt\n  VIOLATION [validity] node 0 height 8 bench/main #6: accepted without a receipt\n  VIOLATION [validity] node 1 height 8 bench/main #6: accepted without a receipt\n  VIOLATION [validity] node 2 height 8 bench/main #6: accepted without a receipt\n  VIOLATION [validity] node 3 height 8 bench/main #6: accepted without a receipt\n  VIOLATION [validity] node 0 height 9 bench/main #7: accepted without a receipt\n  VIOLATION [validity] node 1 height 9 bench/main #7: accepted without a receipt\n  VIOLATION [validity] node 2 height 9 bench/main #7: accepted without a receipt\n  VIOLATION [validity] node 3 height 9 bench/main #7: accepted without a receipt\n  VIOLATION [validity] node 0 height 10 bench/main #8: accepted without a receipt\n  VIOLATION [validity] node 1 height 10 bench/main #8: accepted without a receipt\n  VIOLATION [validity] node 2 height 10 bench/main #8: accepted without a receipt\n  VIOLATION [validity] node 3 height 10 bench/main #8: accepted without a receipt\n  VIOLATION [validity] node 0 height 11 bench/main #9: accepted without a receipt\n  VIOLATION [validity] node 1 height 11 bench/main #9: accepted without a receipt\n  VIOLATION [validity] node 2 height 11 bench/main #9: accepted without a receipt\n  VIOLATION [validity] node 3 height 11 bench/main #9: accepted without a receipt\n  VIOLATION [validity] node 0 height 12 bench/main #10: accepted without a receipt\n  VIOLATION [validity] node 1 height 12 bench/main #10: accepted without a receipt\n  VIOLATION [validity] node 2 height 12 bench/main #10: accepted without a receipt\n  VIOLATION [validity] node 3 height 12 bench/main #10: accepted without a receipt\n  VIOLATION [validity] node 0 height 13 bench/main #11: accepted without a receipt\n  VIOLATION [validity] node 1 height 13 bench/main #11: accepted without a receipt\n  VIOLATION [validity] node 2 height 13 bench/main #11: accepted without a receipt\n  VIOLATION [validity] node 3 height 13 bench/main #11: accepted without a receipt\n"
+ ]
+}

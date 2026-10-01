@@ -1,0 +1,7 @@
+JOB                                  EXPECTATION                            RESULT     GENERATED    DISTINCT  DEPTH     TIME
+SafetyChain                          holds                                  PASS        21007340     8143227     15     412s
+SafetyAdversary                      holds                                  TIMEOUT            -           -      -     600s
+SafetyFull                           holds                                  PASS         6043941     2004917      6      65s
+Replicas                             holds                                  FAIL               -           -      -      24s
+Intents                              holds                                  FAIL               -           -      -       2s
+exit=143

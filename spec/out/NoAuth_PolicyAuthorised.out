@@ -1,0 +1,93 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 106 and seed 5071504123218000583 with 1 worker on 8 cores with 7282MB heap and 64MB offheap memory [pid: 96107] (Mac OS X 14.1 aarch64, Homebrew 21.0.12.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/MC.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/DOSR.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/NoAuth_PolicyAuthorised/Naturals.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/NoAuth_PolicyAuthorised/Sequences.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/NoAuth_PolicyAuthorised/FiniteSets.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/NoAuth_PolicyAuthorised/TLC.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module DOSR
+Semantic processing of module MC
+Starting... (2026-09-29 23:59:27)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-09-29 23:59:28.
+Error: Invariant PolicyAuthorised is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <ByzPolicy line 409, col 9 to line 415, col 33 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ type |-> "Policy",
+     expectedVersion |-> 1,
+     newHash |-> "p1",
+     signers |-> {m3, x} ] >>
+
+State 3: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ type |-> "Policy",
+     expectedVersion |-> 1,
+     newHash |-> "p1",
+     signers |-> {m3, x} ] >>
+/\ applied = (r1 :> 1)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 2,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<[signers |-> {m3, x}, expected |-> 1, version |-> 1]>> ] )
+
+2608 states generated, 1263 distinct states found, 1217 states left on queue.
+The depth of the complete state graph search is 3.
+The average outdegree of the complete state graph is 25 (minimum is 13, the maximum 31 and the 95th percentile is 31).
+Finished in 01s at (2026-09-29 23:59:28)

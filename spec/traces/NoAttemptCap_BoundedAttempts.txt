@@ -1,0 +1,127 @@
+# job: NoAttemptCap_BoundedAttempts    config: mutants/NoAttemptCap_BoundedAttempts.cfg
+# TLC found the expected violation of BoundedAttempts.
+# Only the variables that change are printed (-difftrace).
+Error: Invariant BoundedAttempts is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <HonestIntent line 296, col 5 to line 306, col 41 of module DOSR>
+/\ log = <<[base |-> "none", candidate |-> "b", type |-> "Intent"]>>
+
+State 3: <ByzIntent line 390, col 5 to line 396, col 33 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [base |-> "none", candidate |-> "b", type |-> "Intent"],
+   [base |-> "none", candidate |-> "b", type |-> "Intent"] >>
+
+State 4: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ applied = (r1 :> 1)
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {[base |-> "none", candidate |-> "b", nonce |-> 1]},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 5: <HonestCall line 269, col 5 to line 278, col 41 of module DOSR>
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 1,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 6: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ applied = (r1 :> 2)
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 2,
+        intents |->
+            { [base |-> "none", candidate |-> "b", nonce |-> 1],
+              [base |-> "none", candidate |-> "b", nonce |-> 2] },
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 7: <ByzCall line 326, col 9 to line 331, col 31 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [base |-> "none", candidate |-> "b", type |-> "Intent"],
+   [base |-> "none", candidate |-> "b", type |-> "Intent"] >>
+/\ applied = (r1 :> 2)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 1
+/\ up = (r1 :> TRUE)
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 1,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 2,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 2,
+        intents |->
+            { [base |-> "none", candidate |-> "b", nonce |-> 1],
+              [base |-> "none", candidate |-> "b", nonce |-> 2] },
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+243120 states generated, 128011 distinct states found, 77624 states left on queue.

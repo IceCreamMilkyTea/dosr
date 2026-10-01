@@ -1,0 +1,19 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 106 and seed 1614036910924982677 with 8 workers on 8 cores with 7282MB heap and 64MB offheap memory [pid: 92814] (Mac OS X 14.1 aarch64, Homebrew 21.0.12.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/MC.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/DOSR.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/Naturals.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/Sequences.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/TLC.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module DOSR
+Semantic processing of module MC
+Starting... (2026-09-29 11:38:31)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-09-29 11:38:31.
+Progress(6) at 2026-09-29 11:38:34: 1,507,293 states generated (1,507,293 s/min), 603,567 distinct states found (603,567 ds/min), 576,463 states left on queue.
+Progress(8) at 2026-09-29 11:39:34: 33,036,951 states generated (31,529,658 s/min), 11,650,430 distinct states found (11,046,863 ds/min), 10,846,615 states left on queue.

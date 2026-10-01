@@ -1,0 +1,412 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 28 and seed 7696154048009196950 with 1 worker on 8 cores with 7282MB heap and 64MB offheap memory [pid: 26388] (Mac OS X 14.1 aarch64, Homebrew 21.0.12.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/MC.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/DOSR.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/Naturals.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/Sequences.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/TLC.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module DOSR
+Semantic processing of module MC
+Starting... (2026-09-29 19:20:27)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-09-29 19:20:27.
+Progress(5) at 2026-09-29 19:20:30: 541,727 states generated (541,727 s/min), 198,233 distinct states found (198,233 ds/min), 184,685 states left on queue.
+Progress(7) at 2026-09-29 19:21:30: 10,149,640 states generated (9,607,913 s/min), 2,926,665 distinct states found (2,728,432 ds/min), 2,558,900 states left on queue.
+Progress(7) at 2026-09-29 19:22:30: 18,558,902 states generated (8,409,262 s/min), 5,430,868 distinct states found (2,504,203 ds/min), 4,676,494 states left on queue.
+Progress(7) at 2026-09-29 19:23:30: 27,729,981 states generated (9,171,079 s/min), 7,839,068 distinct states found (2,408,200 ds/min), 6,641,153 states left on queue.
+Progress(7) at 2026-09-29 19:24:30: 36,947,486 states generated (9,217,505 s/min), 9,743,014 distinct states found (1,903,946 ds/min), 7,962,319 states left on queue.
+Progress(8) at 2026-09-29 19:25:30: 46,126,905 states generated (9,179,419 s/min), 11,286,266 distinct states found (1,543,252 ds/min), 8,967,090 states left on queue.
+Progress(8) at 2026-09-29 19:26:30: 52,933,850 states generated (6,806,945 s/min), 13,099,594 distinct states found (1,813,328 ds/min), 10,240,875 states left on queue.
+Progress(8) at 2026-09-29 19:27:30: 60,559,784 states generated (7,625,934 s/min), 15,251,274 distinct states found (2,151,680 ds/min), 11,725,011 states left on queue.
+Progress(8) at 2026-09-29 19:28:30: 68,265,261 states generated (7,705,477 s/min), 17,128,448 distinct states found (1,877,174 ds/min), 12,987,473 states left on queue.
+Progress(8) at 2026-09-29 19:29:30: 76,143,585 states generated (7,878,324 s/min), 18,707,228 distinct states found (1,578,780 ds/min), 14,084,986 states left on queue.
+Progress(8) at 2026-09-29 19:30:30: 82,796,272 states generated (6,652,687 s/min), 20,546,469 distinct states found (1,839,241 ds/min), 15,362,406 states left on queue.
+Progress(8) at 2026-09-29 19:31:30: 88,739,142 states generated (5,942,870 s/min), 22,071,938 distinct states found (1,525,469 ds/min), 16,389,355 states left on queue.
+Progress(8) at 2026-09-29 19:32:30: 94,971,620 states generated (6,232,478 s/min), 23,113,088 distinct states found (1,041,150 ds/min), 17,079,071 states left on queue.
+Progress(8) at 2026-09-29 19:33:30: 102,559,339 states generated (7,587,719 s/min), 25,201,429 distinct states found (2,088,341 ds/min), 18,488,162 states left on queue.
+Progress(8) at 2026-09-29 19:34:30: 110,034,181 states generated (7,474,842 s/min), 26,727,755 distinct states found (1,526,326 ds/min), 19,494,886 states left on queue.
+Progress(8) at 2026-09-29 19:35:30: 116,277,501 states generated (6,243,320 s/min), 28,363,172 distinct states found (1,635,417 ds/min), 20,585,753 states left on queue.
+Progress(8) at 2026-09-29 19:36:30: 122,681,215 states generated (6,403,714 s/min), 29,450,272 distinct states found (1,087,100 ds/min), 21,254,731 states left on queue.
+Progress(8) at 2026-09-29 19:37:30: 128,760,449 states generated (6,079,234 s/min), 30,682,898 distinct states found (1,232,626 ds/min), 22,114,394 states left on queue.
+Progress(8) at 2026-09-29 19:38:30: 134,853,886 states generated (6,093,437 s/min), 31,719,923 distinct states found (1,037,025 ds/min), 22,797,973 states left on queue.
+Progress(8) at 2026-09-29 19:39:30: 141,114,582 states generated (6,260,696 s/min), 32,942,436 distinct states found (1,222,513 ds/min), 23,491,621 states left on queue.
+Progress(8) at 2026-09-29 19:40:30: 147,320,651 states generated (6,206,069 s/min), 34,025,061 distinct states found (1,082,625 ds/min), 24,104,284 states left on queue.
+Progress(8) at 2026-09-29 19:41:30: 154,093,645 states generated (6,772,994 s/min), 35,231,566 distinct states found (1,206,505 ds/min), 24,785,829 states left on queue.
+Progress(8) at 2026-09-29 19:42:30: 161,361,204 states generated (7,267,559 s/min), 36,282,760 distinct states found (1,051,194 ds/min), 25,374,498 states left on queue.
+Progress(9) at 2026-09-29 19:43:30: 167,909,742 states generated (6,548,538 s/min), 37,138,702 distinct states found (855,942 ds/min), 25,856,005 states left on queue.
+Progress(9) at 2026-09-29 19:44:30: 172,211,843 states generated (4,302,101 s/min), 38,433,908 distinct states found (1,295,206 ds/min), 26,611,644 states left on queue.
+Progress(9) at 2026-09-29 19:45:30: 177,631,357 states generated (5,419,514 s/min), 39,865,523 distinct states found (1,431,615 ds/min), 27,449,815 states left on queue.
+Progress(9) at 2026-09-29 19:46:30: 183,072,538 states generated (5,441,181 s/min), 40,993,507 distinct states found (1,127,984 ds/min), 28,111,359 states left on queue.
+Progress(9) at 2026-09-29 19:47:30: 188,380,601 states generated (5,308,063 s/min), 42,297,592 distinct states found (1,304,085 ds/min), 28,890,476 states left on queue.
+Progress(9) at 2026-09-29 19:48:30: 193,977,238 states generated (5,596,637 s/min), 43,687,596 distinct states found (1,390,004 ds/min), 29,716,412 states left on queue.
+Progress(9) at 2026-09-29 19:49:30: 200,539,951 states generated (6,562,713 s/min), 45,616,347 distinct states found (1,928,751 ds/min), 30,821,321 states left on queue.
+Checkpointing of run out/states/NoRestartIndex_PrefixConsistency/26-09-29-19-20-27
+Checkpointing completed at (2026-09-29 19:50:31)
+Progress(9) at 2026-09-29 19:50:31: 206,574,046 states generated (6,034,095 s/min), 47,260,886 distinct states found (1,644,539 ds/min), 31,767,114 states left on queue.
+Progress(9) at 2026-09-29 19:51:31: 211,953,460 states generated (5,379,414 s/min), 48,536,515 distinct states found (1,275,629 ds/min), 32,495,946 states left on queue.
+Progress(9) at 2026-09-29 19:52:31: 217,175,292 states generated (5,221,832 s/min), 49,848,233 distinct states found (1,311,718 ds/min), 33,246,228 states left on queue.
+Progress(9) at 2026-09-29 19:53:31: 222,794,280 states generated (5,618,988 s/min), 51,026,961 distinct states found (1,178,728 ds/min), 33,918,443 states left on queue.
+Progress(9) at 2026-09-29 19:54:31: 229,203,323 states generated (6,409,043 s/min), 51,883,019 distinct states found (856,058 ds/min), 34,401,589 states left on queue.
+Progress(9) at 2026-09-29 19:55:31: 234,684,222 states generated (5,480,899 s/min), 52,974,915 distinct states found (1,091,896 ds/min), 35,035,757 states left on queue.
+Progress(9) at 2026-09-29 19:56:31: 239,410,569 states generated (4,726,347 s/min), 54,157,715 distinct states found (1,182,800 ds/min), 35,749,106 states left on queue.
+Progress(9) at 2026-09-29 19:57:31: 245,362,386 states generated (5,951,817 s/min), 55,407,977 distinct states found (1,250,262 ds/min), 36,493,002 states left on queue.
+Progress(9) at 2026-09-29 19:58:31: 251,359,455 states generated (5,997,069 s/min), 56,773,227 distinct states found (1,365,250 ds/min), 37,328,578 states left on queue.
+Progress(9) at 2026-09-29 19:59:31: 257,088,453 states generated (5,728,998 s/min), 58,453,574 distinct states found (1,680,347 ds/min), 38,293,849 states left on queue.
+Progress(9) at 2026-09-29 20:00:31: 262,815,035 states generated (5,726,582 s/min), 59,999,576 distinct states found (1,546,002 ds/min), 39,180,483 states left on queue.
+Progress(9) at 2026-09-29 20:01:31: 268,754,594 states generated (5,939,559 s/min), 61,565,367 distinct states found (1,565,791 ds/min), 40,079,425 states left on queue.
+Progress(9) at 2026-09-29 20:02:31: 275,272,582 states generated (6,517,988 s/min), 63,107,144 distinct states found (1,541,777 ds/min), 40,964,208 states left on queue.
+Progress(9) at 2026-09-29 20:03:31: 281,810,851 states generated (6,538,269 s/min), 64,351,915 distinct states found (1,244,771 ds/min), 41,677,392 states left on queue.
+Progress(9) at 2026-09-29 20:04:31: 289,129,073 states generated (7,318,222 s/min), 65,223,815 distinct states found (871,900 ds/min), 42,174,930 states left on queue.
+Progress(9) at 2026-09-29 20:05:31: 294,167,822 states generated (5,038,749 s/min), 66,653,500 distinct states found (1,429,685 ds/min), 42,998,893 states left on queue.
+Progress(9) at 2026-09-29 20:06:31: 299,900,308 states generated (5,732,486 s/min), 68,027,658 distinct states found (1,374,158 ds/min), 43,823,097 states left on queue.
+Progress(9) at 2026-09-29 20:07:31: 305,386,919 states generated (5,486,611 s/min), 69,549,714 distinct states found (1,522,056 ds/min), 44,677,623 states left on queue.
+Progress(9) at 2026-09-29 20:08:31: 310,991,034 states generated (5,604,115 s/min), 70,894,680 distinct states found (1,344,966 ds/min), 45,432,570 states left on queue.
+Progress(9) at 2026-09-29 20:09:31: 317,096,054 states generated (6,105,020 s/min), 72,146,756 distinct states found (1,252,076 ds/min), 46,132,211 states left on queue.
+Progress(9) at 2026-09-29 20:10:31: 322,541,227 states generated (5,445,173 s/min), 73,118,917 distinct states found (972,161 ds/min), 46,681,836 states left on queue.
+Progress(9) at 2026-09-29 20:11:31: 328,245,230 states generated (5,704,003 s/min), 74,428,349 distinct states found (1,309,432 ds/min), 47,461,173 states left on queue.
+Progress(9) at 2026-09-29 20:12:31: 333,864,723 states generated (5,619,493 s/min), 75,895,897 distinct states found (1,467,548 ds/min), 48,303,045 states left on queue.
+Progress(9) at 2026-09-29 20:13:31: 339,424,232 states generated (5,559,509 s/min), 77,345,862 distinct states found (1,449,965 ds/min), 49,117,081 states left on queue.
+Progress(9) at 2026-09-29 20:14:31: 345,992,832 states generated (6,568,600 s/min), 78,674,086 distinct states found (1,328,224 ds/min), 49,860,063 states left on queue.
+Progress(9) at 2026-09-29 20:15:31: 354,660,338 states generated (8,667,506 s/min), 79,920,743 distinct states found (1,246,657 ds/min), 50,549,938 states left on queue.
+Progress(9) at 2026-09-29 20:16:31: 362,867,063 states generated (8,206,725 s/min), 81,334,284 distinct states found (1,413,541 ds/min), 51,391,258 states left on queue.
+Progress(9) at 2026-09-29 20:17:31: 370,644,392 states generated (7,777,329 s/min), 83,126,782 distinct states found (1,792,498 ds/min), 52,568,947 states left on queue.
+Progress(9) at 2026-09-29 20:18:31: 378,289,575 states generated (7,645,183 s/min), 84,649,313 distinct states found (1,522,531 ds/min), 53,577,479 states left on queue.
+Progress(9) at 2026-09-29 20:19:31: 385,058,373 states generated (6,768,798 s/min), 85,593,010 distinct states found (943,697 ds/min), 54,131,147 states left on queue.
+Checkpointing of run out/states/NoRestartIndex_PrefixConsistency/26-09-29-19-20-27
+Checkpointing completed at (2026-09-29 20:20:32)
+Progress(9) at 2026-09-29 20:20:32: 391,210,837 states generated (6,152,464 s/min), 86,703,718 distinct states found (1,110,708 ds/min), 54,721,595 states left on queue.
+Progress(9) at 2026-09-29 20:21:32: 397,629,524 states generated (6,418,687 s/min), 87,816,819 distinct states found (1,113,101 ds/min), 55,309,327 states left on queue.
+Progress(9) at 2026-09-29 20:22:32: 405,280,348 states generated (7,650,824 s/min), 89,365,136 distinct states found (1,548,317 ds/min), 56,129,334 states left on queue.
+Progress(9) at 2026-09-29 20:23:32: 414,052,983 states generated (8,772,635 s/min), 90,815,072 distinct states found (1,449,936 ds/min), 56,895,647 states left on queue.
+Progress(9) at 2026-09-29 20:24:32: 422,244,090 states generated (8,191,107 s/min), 92,343,981 distinct states found (1,528,909 ds/min), 57,703,426 states left on queue.
+Progress(9) at 2026-09-29 20:25:32: 431,174,956 states generated (8,930,866 s/min), 93,746,532 distinct states found (1,402,551 ds/min), 58,443,575 states left on queue.
+Progress(9) at 2026-09-29 20:26:32: 440,150,497 states generated (8,975,541 s/min), 95,131,245 distinct states found (1,384,713 ds/min), 59,165,574 states left on queue.
+Progress(9) at 2026-09-29 20:27:32: 449,440,445 states generated (9,289,948 s/min), 96,370,712 distinct states found (1,239,467 ds/min), 59,807,762 states left on queue.
+Error: Invariant PrefixConsistency is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0 @@ r2 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0 @@ r2 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE @@ r2 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <HonestCall line 269, col 5 to line 278, col 41 of module DOSR>
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 3: <HonestCall line 269, col 5 to line 278, col 41 of module DOSR>
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "none",
+    candidate |-> "a",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 4: <HonestAccept line 284, col 5 to line 291, col 41 of module DOSR>
+/\ log = << [ candidate |-> "b",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "b",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+
+State 5: <HonestAccept line 284, col 5 to line 291, col 41 of module DOSR>
+/\ log = << [ candidate |-> "b",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "b",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ],
+   [ candidate |-> "a",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "a",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+
+State 6: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ applied = (r1 :> 1 @@ r2 :> 0)
+/\ rstate = ( r1 :>
+      [ head |-> "b",
+        history |-> <<"b">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "b",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "b",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 7: <Crash line 436, col 5 to line 441, col 27 of module DOSR>
+/\ crashes = 1
+/\ up = (r1 :> FALSE @@ r2 :> TRUE)
+
+State 8: <Restart line 445, col 5 to line 451, col 75 of module DOSR>
+/\ up = (r1 :> TRUE @@ r2 :> TRUE)
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 9: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ applied = (r1 :> 2 @@ r2 :> 0)
+/\ rstate = ( r1 :>
+      [ head |-> "a",
+        history |-> <<"a">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "a",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "a",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 10: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ byzTxs = 0
+/\ log = << [ candidate |-> "b",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "b",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ],
+   [ candidate |-> "a",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "a",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+/\ applied = (r1 :> 2 @@ r2 :> 1)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0 @@ r2 :> 0)
+/\ crashes = 1
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE @@ r2 :> TRUE)
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "none",
+    candidate |-> "a",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+/\ rstate = ( r1 :>
+      [ head |-> "a",
+        history |-> <<"a">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "a",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "a",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "b",
+        history |-> <<"b">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "b",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "b",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] )
+
+457243218 states generated, 97052868 distinct states found, 60150493 states left on queue.
+The depth of the complete state graph search is 10.
+The average outdegree of the complete state graph is 3 (minimum is 0, the maximum 31 and the 95th percentile is 5).
+Finished in 01h 07min at (2026-09-29 20:28:23)

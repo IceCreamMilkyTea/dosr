@@ -1,0 +1,8 @@
+reference/
+bin/
+*.test
+.testnet/
+spec/tools/tla2tools.jar
+spec/out/states/
+*.out.tmp
+.DS_Store

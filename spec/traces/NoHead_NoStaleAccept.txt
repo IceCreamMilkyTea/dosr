@@ -1,0 +1,118 @@
+# job: NoHead_NoStaleAccept    config: mutants/NoHead_NoStaleAccept.cfg
+# TLC found the expected violation of NoStaleAccept.
+# Only the variables that change are printed (-difftrace).
+Error: Invariant NoStaleAccept is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <ByzCall line 326, col 9 to line 331, col 31 of module DOSR>
+/\ byzCalls = 1
+/\ receipts = { [ base |-> "a",
+    candidate |-> "c",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 3: <ByzAccept line 382, col 5 to line 387, col 33 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "c",
+     type |-> "Accept",
+     expectedHead |-> "a",
+     receipt |->
+         [ base |-> "a",
+           candidate |-> "c",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+
+State 4: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "c",
+     type |-> "Accept",
+     expectedHead |-> "a",
+     receipt |->
+         [ base |-> "a",
+           candidate |-> "c",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+/\ applied = (r1 :> 1)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 1
+/\ up = (r1 :> TRUE)
+/\ receipts = { [ base |-> "a",
+    candidate |-> "c",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+/\ rstate = ( r1 :>
+      [ head |-> "c",
+        history |-> <<"c">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "c",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "a",
+                       candidate |-> "c",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] )
+
+22173 states generated, 9752 distinct states found, 9293 states left on queue.

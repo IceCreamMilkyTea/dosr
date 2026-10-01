@@ -1,0 +1,135 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 98 and seed -4825240331150246865 with 1 worker on 8 cores with 7282MB heap and 64MB offheap memory [pid: 3734] (Mac OS X 14.1 aarch64, Homebrew 21.0.12.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/MC.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/DOSR.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/Naturals.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/Sequences.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/3h/wr0h_p9j48j_nrkyx4smpyhc0000gn/T/TLC.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module DOSR
+Semantic processing of module MC
+Starting... (2026-09-29 17:05:47)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-09-29 17:05:47.
+Error: Invariant CertifiedHistory is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <ByzCall line 326, col 9 to line 331, col 31 of module DOSR>
+/\ byzCalls = 1
+/\ receipts = { [ base |-> "c",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 3: <ByzAccept line 382, col 5 to line 387, col 33 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "b",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "c",
+           candidate |-> "b",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+
+State 4: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "b",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "c",
+           candidate |-> "b",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+/\ applied = (r1 :> 1)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 1
+/\ up = (r1 :> TRUE)
+/\ receipts = { [ base |-> "c",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+/\ rstate = ( r1 :>
+      [ head |-> "b",
+        history |-> <<"b">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "b",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "c",
+                       candidate |-> "b",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] )
+
+25049 states generated, 10958 distinct states found, 10419 states left on queue.
+The depth of the complete state graph search is 4.
+The average outdegree of the complete state graph is 19 (minimum is 0, the maximum 31 and the 95th percentile is 31).
+Finished in 00s at (2026-09-29 17:05:47)

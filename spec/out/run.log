@@ -1,0 +1,43 @@
+JOB                                  EXPECTATION                            RESULT     GENERATED    DISTINCT  DEPTH     TIME
+SafetyChain                          holds                                  PASS         4355686     1724168     14      28s
+SafetyAdversary                      holds                                  PASS         8292032     2715007     10      30s
+SafetyFull                           holds                                  PASS         6043941     2004917      6      29s
+Replicas                             holds                                  PASS        25875873     5092728     22     164s
+Intents                              holds                                  PASS         7016264     2797553     12     128s
+IntentsNoGrinding                    holds                                  PASS          210378      118931     12       5s
+Liveness                             holds                                  PASS         5601681     1417112     26     107s
+LivenessByz                          holds                                  PASS         2069963      693277     16      32s
+LivenessIntents                      holds                                  PASS            1211         945     14       1s
+Grinding                             violates NoGrinding                    PASS          853683      445238      5       4s
+GrindingHonest                       violates NoGrinding                    PASS              83          73      5       1s
+GrindingIntents2                     violates NoGrinding                    PASS         1859695      896821      9      84s
+PolicyEpoch                          violates PolicyEpoch                   PASS           71403       38276      6       1s
+WitnessAcceptAfterUpdate             violates NeverAcceptAfterPolicyUpdate  PASS          208610       80759      6       2s
+WitnessThreeAccepts                  violates NeverThreeAccepts             PASS         3190805     1202143     10      46s
+NoAttemptCap_BoundedAttempts         violates BoundedAttempts               PASS          243120      128011      7      15s
+NoAuth_PolicyAuthorised              violates PolicyAuthorised              PASS            2608        1263      3       1s
+NoBase_CertifiedHistory              violates CertifiedHistory              PASS           25049       10958      4       0s
+NoBase_NoStaleAccept                 violates NoStaleAccept                 PASS           25049       10958      4       1s
+NoCandidate_CertifiedHistory         violates CertifiedHistory              PASS            5177        2464      4       0s
+NoHead_LinearHistory                 violates LinearHistory                 PASS           22173        9752      4       1s
+NoHead_NoReceiptReuse                violates NoReceiptReuse                PASS          808644      276307      6       4s
+NoHead_NoStaleAccept                 violates NoStaleAccept                 PASS           22173        9752      4       2s
+NoIntentUnused_IntentBinding         equiv IntentBinding                    PASS         4676457     1708840     12      46s
+NoIntentUnused_NoHead_IntentBinding  violates IntentBinding                 PASS           15531        7135      8       1s
+NoIntent_IntentBinding               equiv IntentBinding                    PASS         4676457     1708840     12      57s
+NoIntent_NoNotaryIntent_IntentBinding violates IntentBinding                 PASS           21140       10356      4       1s
+NoMember_CertifiedHistory            violates CertifiedHistory              PASS            2386        1213      3       1s
+NoNotaryIntent_BoundedAttempts       violates BoundedAttempts               PASS             553         479      3       1s
+NoNotaryIntent_NoGrinding            violates NoGrinding                    PASS           73155       32457      7       1s
+NoNotaryOnce_BoundedAttempts         violates BoundedAttempts               PASS           20048       16856      5       1s
+NoNotaryOnce_NoGrinding              violates NoGrinding                    PASS          401257      196602      7      17s
+NoParent_LinearHistory               violates LinearHistory                 PASS           17632        7883      4       0s
+NoPolicy_CertifiedHistory            violates CertifiedHistory              PASS           38666       16269      4       3s
+NoPolicy_PolicyBinding               violates PolicyBinding                 PASS           38666       16269      4       1s
+NoRestartIndex_Determinism           violates Determinism                   PASS          323704      113023      5       3s
+NoRestartIndex_PrefixConsistency     violates PrefixConsistency             PASS         4763349     1341734     10      41s
+NoVerdict_CertifiedHistory           violates CertifiedHistory              PASS           10244        4666      4       0s
+NoVersion_PolicyAuthorised           violates PolicyAuthorised              PASS          382270      133828      5       4s
+
+ALL JOBS PASSED
+exit=0

@@ -1,0 +1,143 @@
+# job: NoRestartIndex_Determinism    config: mutants/NoRestartIndex_Determinism.cfg
+# TLC found the expected violation of Determinism.
+# Only the variables that change are printed (-difftrace).
+Error: Invariant Determinism is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0 @@ r2 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0 @@ r2 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE @@ r2 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <HonestPolicy line 313, col 5 to line 317, col 41 of module DOSR>
+/\ log = << [ type |-> "Policy",
+     expectedVersion |-> 1,
+     newHash |-> "p1",
+     signers |-> {m1, m2, m3} ] >>
+
+State 3: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ applied = (r1 :> 1 @@ r2 :> 0)
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 2,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |->
+            <<[signers |-> {m1, m2, m3}, expected |-> 1, version |-> 1]>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 4: <Crash line 436, col 5 to line 441, col 27 of module DOSR>
+/\ crashes = 1
+/\ up = (r1 :> FALSE @@ r2 :> TRUE)
+
+State 5: <Restart line 445, col 5 to line 451, col 75 of module DOSR>
+/\ byzTxs = 0
+/\ log = << [ type |-> "Policy",
+     expectedVersion |-> 1,
+     newHash |-> "p1",
+     signers |-> {m1, m2, m3} ] >>
+/\ applied = (r1 :> 1 @@ r2 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0 @@ r2 :> 0)
+/\ crashes = 1
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE @@ r2 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] @@
+  r2 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+323704 states generated, 113023 distinct states found, 105853 states left on queue.

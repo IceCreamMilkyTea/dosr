@@ -1,0 +1,160 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 102 and seed -1020009948847556948 with 1 worker on 8 cores with 7282MB heap and 64MB offheap memory [pid: 93482] (Mac OS X 14.1 aarch64, Homebrew 21.0.12.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/MC.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/DOSR.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/Grinding/Naturals.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/Grinding/Sequences.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/Grinding/FiniteSets.tla
+Parsing file /Users/weiyuhan/Desktop/Fall_2026_Duke/CS512/project_new/spec/out/tmp/Grinding/TLC.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module DOSR
+Semantic processing of module MC
+Starting... (2026-09-29 23:56:54)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-09-29 23:56:54.
+Progress(5) at 2026-09-29 23:56:57: 635,478 states generated (635,478 s/min), 334,361 distinct states found (334,361 ds/min), 308,896 states left on queue.
+Error: Invariant NoGrinding is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <ByzCall line 326, col 9 to line 331, col 31 of module DOSR>
+/\ byzCalls = 1
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "reject",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 3: <ByzCall line 326, col 9 to line 331, col 31 of module DOSR>
+/\ byzCalls = 2
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 2,
+    epoch |-> 0 ],
+  [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "reject",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 4: <ByzAccept line 382, col 5 to line 387, col 33 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "b",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "b",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 2,
+           epoch |-> 0 ] ] >>
+
+State 5: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "b",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "b",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 2,
+           epoch |-> 0 ] ] >>
+/\ applied = (r1 :> 1)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 2
+/\ up = (r1 :> TRUE)
+/\ receipts = { [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 2,
+    epoch |-> 0 ],
+  [ base |-> "none",
+    candidate |-> "b",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "reject",
+    sid |-> 1,
+    epoch |-> 0 ] }
+/\ rstate = ( r1 :>
+      [ head |-> "b",
+        history |-> <<"b">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "b",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "b",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 2,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] )
+
+853683 states generated, 445238 distinct states found, 410553 states left on queue.
+The depth of the complete state graph search is 5.
+The average outdegree of the complete state graph is 13 (minimum is 0, the maximum 31 and the 95th percentile is 16).
+Finished in 04s at (2026-09-29 23:56:58)

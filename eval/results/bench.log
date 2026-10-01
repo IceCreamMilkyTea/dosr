@@ -1,0 +1,77 @@
+22:41:11 == verify_cost
+22:41:11       1024 bytes: verify p50 0.15 ms (tx 3711 bytes)
+22:41:11      10240 bytes: verify p50 0.21 ms (tx 12920 bytes)
+22:41:11     102400 bytes: verify p50 1.66 ms (tx 105095 bytes)
+22:41:11    1048576 bytes: verify p50 11.12 ms (tx 1051356 bytes)
+22:41:11 verify done in 0s
+22:41:11 == consensus_n4_lan_default
+22:41:42    commit p50 1288 ms, decided-all p50 1268 ms
+22:41:42 == consensus_n4_lan_fast
+22:41:58    commit p50 680 ms, decided-all p50 640 ms
+22:41:58 == consensus_n4_regional_default
+22:42:29    commit p50 1300 ms, decided-all p50 1271 ms
+22:42:29 == consensus_n4_regional_fast
+22:42:44    commit p50 603 ms, decided-all p50 575 ms
+22:42:44 == consensus_n4_wan_default
+22:43:15    commit p50 1280 ms, decided-all p50 1302 ms
+22:43:15 == consensus_n4_wan_fast
+22:43:36    commit p50 842 ms, decided-all p50 897 ms
+22:43:36 == consensus_n7_lan_default
+22:44:06    commit p50 1302 ms, decided-all p50 1267 ms
+22:44:06 == consensus_n7_lan_fast
+22:44:24    commit p50 714 ms, decided-all p50 682 ms
+22:44:24 == consensus_n7_regional_default
+22:44:55    commit p50 1302 ms, decided-all p50 1264 ms
+22:44:55 == consensus_n7_regional_fast
+22:45:14    commit p50 798 ms, decided-all p50 765 ms
+22:45:14 == consensus_n7_wan_default
+22:45:46    commit p50 1280 ms, decided-all p50 1334 ms
+22:45:46 == consensus_n7_wan_fast
+22:46:09    commit p50 980 ms, decided-all p50 985 ms
+22:46:09 == consensus_n10_lan_default
+22:46:39    commit p50 1228 ms, decided-all p50 1226 ms
+22:46:39 == consensus_n10_lan_fast
+22:46:58    commit p50 778 ms, decided-all p50 750 ms
+22:46:58 == consensus_n10_regional_default
+22:47:30    commit p50 1293 ms, decided-all p50 1285 ms
+22:47:30 == consensus_n10_regional_fast
+22:47:49    commit p50 806 ms, decided-all p50 782 ms
+22:47:49 == consensus_n10_wan_default
+22:48:23    commit p50 1420 ms, decided-all p50 1423 ms
+22:48:23 == consensus_n10_wan_fast
+22:48:51    commit p50 1168 ms, decided-all p50 1179 ms
+22:48:51 consensus done in 7m40s
+22:48:56 == bundle_1k
+22:49:09    tx 5847 bytes, commit p50 1287 ms
+22:49:09 == bundle_10k
+22:49:22    tx 15087 bytes, commit p50 1287 ms
+22:49:22 == bundle_100k
+22:49:35    tx 107267 bytes, commit p50 1260 ms
+22:49:35 == bundle_1024k
+22:49:48    tx 1054206 bytes, commit p50 1183 ms
+22:49:49 bundle done in 57s
+22:49:49 == e2e_dosr_none
+22:50:07    ok 10/10, total p50 1308 ms, provider calls 10, cost $0.0860
+22:50:07 == e2e_dosr_realistic
+22:51:27    ok 10/10, total p50 7215 ms, provider calls 10, cost $0.0861
+22:51:27 == e2e_baseline_none
+22:51:45    ok 10/10, total p50 1305 ms, provider calls 40, cost $0.3443
+22:51:45 == e2e_baseline_realistic
+22:56:50    ok 10/10, total p50 29661 ms, provider calls 40, cost $0.3444
+22:56:50 e2e done in 7m1s
+22:56:50 == contention_k1
+22:57:00    accepted 4, reviews 4 (1.00 per accepted), 5.4s
+22:57:00 == contention_k2
+22:57:15    accepted 8, reviews 24 (3.00 per accepted), 10.4s
+22:57:15 == contention_k4
+22:57:40    accepted 16, reviews 103 (6.44 per accepted), 20.8s
+22:57:40 == contention_k8
+22:58:27    accepted 32, reviews 511 (15.97 per accepted), 41.8s
+22:58:27 contention done in 1m37s
+22:58:27 == faults_timeline
+23:00:32 faults done in 2m5s
+23:00:32 == grinding_no_intents
+23:00:43    accepted 19/20, reviews 77
+23:00:43 == grinding_intents_max3
+23:01:11    accepted 13/20, reviews 44
+23:01:11 grinding done in 40s

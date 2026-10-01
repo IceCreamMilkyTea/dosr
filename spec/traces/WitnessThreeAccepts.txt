@@ -1,0 +1,338 @@
+# job: WitnessThreeAccepts    config: expected/WitnessThreeAccepts.cfg
+# TLC found the expected violation of NeverThreeAccepts.
+# Only the variables that change are printed (-difftrace).
+Error: Invariant NeverThreeAccepts is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ byzTxs = 0
+/\ log = <<>>
+/\ applied = (r1 :> 0)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 0
+/\ up = (r1 :> TRUE)
+/\ receipts = {}
+/\ rstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+
+State 2: <HonestCall line 269, col 5 to line 278, col 41 of module DOSR>
+/\ receipts = { [ base |-> "none",
+    candidate |-> "a",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 3: <HonestAccept line 284, col 5 to line 291, col 41 of module DOSR>
+/\ log = << [ candidate |-> "a",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "a",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+
+State 4: <ByzCall line 326, col 9 to line 331, col 31 of module DOSR>
+/\ byzCalls = 1
+/\ receipts = { [ base |-> "none",
+    candidate |-> "a",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "a",
+    candidate |-> "c",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 5: <ByzAccept line 382, col 5 to line 387, col 33 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "a",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "a",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ],
+   [ candidate |-> "c",
+     type |-> "Accept",
+     expectedHead |-> "a",
+     receipt |->
+         [ base |-> "a",
+           candidate |-> "c",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+
+State 6: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ applied = (r1 :> 1)
+/\ rstate = ( r1 :>
+      [ head |-> "a",
+        history |-> <<"a">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 1,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "a",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "a",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ] >>,
+        pauth |-> <<>> ] )
+
+State 7: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ applied = (r1 :> 2)
+/\ rstate = ( r1 :>
+      [ head |-> "c",
+        history |-> <<"a", "c">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 2,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "a",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "a",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ],
+               [ candidate |-> "c",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "a",
+                       candidate |-> "c",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "a",
+                 index |-> 2 ] >>,
+        pauth |-> <<>> ] )
+
+State 8: <HonestCall line 269, col 5 to line 278, col 41 of module DOSR>
+/\ receipts = { [ base |-> "none",
+    candidate |-> "a",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "c",
+    candidate |-> "e",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "a",
+    candidate |-> "c",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+
+State 9: <HonestAccept line 284, col 5 to line 291, col 41 of module DOSR>
+/\ log = << [ candidate |-> "a",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "a",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ],
+   [ candidate |-> "c",
+     type |-> "Accept",
+     expectedHead |-> "a",
+     receipt |->
+         [ base |-> "a",
+           candidate |-> "c",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ],
+   [ candidate |-> "e",
+     type |-> "Accept",
+     expectedHead |-> "c",
+     receipt |->
+         [ base |-> "c",
+           candidate |-> "e",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+
+State 10: <Apply line 419, col 5 to line 423, col 79 of module DOSR>
+/\ byzTxs = 1
+/\ log = << [ candidate |-> "a",
+     type |-> "Accept",
+     expectedHead |-> "none",
+     receipt |->
+         [ base |-> "none",
+           candidate |-> "a",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ],
+   [ candidate |-> "c",
+     type |-> "Accept",
+     expectedHead |-> "a",
+     receipt |->
+         [ base |-> "a",
+           candidate |-> "c",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ],
+   [ candidate |-> "e",
+     type |-> "Accept",
+     expectedHead |-> "c",
+     receipt |->
+         [ base |-> "c",
+           candidate |-> "e",
+           policy |-> "p1",
+           nonce |-> 0,
+           verdict |-> "approve",
+           sid |-> 1,
+           epoch |-> 0 ] ] >>
+/\ applied = (r1 :> 3)
+/\ pstate = ( r1 :>
+      [ head |-> "none",
+        history |-> <<>>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 0,
+        intents |-> {},
+        used |-> {},
+        certs |-> <<>>,
+        pauth |-> <<>> ] )
+/\ pidx = (r1 :> 0)
+/\ crashes = 0
+/\ byzCalls = 1
+/\ up = (r1 :> TRUE)
+/\ receipts = { [ base |-> "none",
+    candidate |-> "a",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "c",
+    candidate |-> "e",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ],
+  [ base |-> "a",
+    candidate |-> "c",
+    policy |-> "p1",
+    nonce |-> 0,
+    verdict |-> "approve",
+    sid |-> 1,
+    epoch |-> 0 ] }
+/\ rstate = ( r1 :>
+      [ head |-> "e",
+        history |-> <<"a", "c", "e">>,
+        pver |-> 1,
+        phash |-> "p1",
+        height |-> 3,
+        intents |-> {},
+        used |-> {},
+        certs |->
+            << [ candidate |-> "a",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "none",
+                       candidate |-> "a",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "none",
+                 index |-> 1 ],
+               [ candidate |-> "c",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "a",
+                       candidate |-> "c",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "a",
+                 index |-> 2 ],
+               [ candidate |-> "e",
+                 policy |-> [ver |-> 1, hash |-> "p1"],
+                 receipt |->
+                     [ base |-> "c",
+                       candidate |-> "e",
+                       policy |-> "p1",
+                       nonce |-> 0,
+                       verdict |-> "approve",
+                       sid |-> 1,
+                       epoch |-> 0 ],
+                 headBefore |-> "c",
+                 index |-> 3 ] >>,
+        pauth |-> <<>> ] )
+
+3190805 states generated, 1202143 distinct states found, 333407 states left on queue.

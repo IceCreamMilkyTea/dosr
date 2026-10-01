@@ -1,0 +1,444 @@
+{
+ "experiment": "bundle",
+ "params": {
+  "change_bytes": 10240,
+  "count": 10,
+  "network": "regional",
+  "validators": 4
+ },
+ "started_at": "2026-09-29T22:49:09.289512-04:00",
+ "duration_ns": 13358207750,
+ "samples": [
+  {
+   "i": 0,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 14,
+    "tx_id": "6e8b24c1a571d9c906da41497e8c2a4c7ff51616f35528d9f55afd297769f14d",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 14038,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 365000,
+     "intent_ns": 0,
+     "attest_ns": 2980125,
+     "upstream_ns": 2242750,
+     "attest_overhead_ns": 123750,
+     "present_ns": 153625,
+     "admit_ns": 982541,
+     "commit_ns": 1286925041,
+     "total_ns": 1291460750
+    },
+    "decided_at": "2026-09-29T22:49:10.581135-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:09.289668-04:00",
+   "decided_first_ns": 1246000000,
+   "decided_all_ns": 1251363000,
+   "rounds": 1
+  },
+  {
+   "i": 1,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 15,
+    "tx_id": "35140dffebcb588185cfb0b314b6e1d2eb38f5b41399fb2bd9b5965e55bd2af6",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 14038,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 358000,
+     "intent_ns": 0,
+     "attest_ns": 1525375,
+     "upstream_ns": 1077792,
+     "attest_overhead_ns": 54917,
+     "present_ns": 85457,
+     "admit_ns": 653208,
+     "commit_ns": 1280273541,
+     "total_ns": 1282963500
+    },
+    "decided_at": "2026-09-29T22:49:11.86427-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:10.581301-04:00",
+   "decided_first_ns": 1149012000,
+   "decided_all_ns": 1256712000,
+   "rounds": 1
+  },
+  {
+   "i": 2,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 16,
+    "tx_id": "3ea54208867a6ca079ba59e2894edc8d86e8ca77b432225e446fd24afd6630bb",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 14038,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 1783584,
+     "intent_ns": 0,
+     "attest_ns": 3995250,
+     "upstream_ns": 2424334,
+     "attest_overhead_ns": 79416,
+     "present_ns": 108958,
+     "admit_ns": 1372125,
+     "commit_ns": 1300122792,
+     "total_ns": 1307437000
+    },
+    "decided_at": "2026-09-29T22:49:13.172812-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:11.865368-04:00",
+   "decided_first_ns": 1186928000,
+   "decided_all_ns": 1286574000,
+   "rounds": 1
+  },
+  {
+   "i": 3,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 17,
+    "tx_id": "eabfc028114666d9442ac9a08c21c7dc2dcf59003904dbc51af5f2752662c1bd",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 14038,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 573500,
+     "intent_ns": 0,
+     "attest_ns": 3037417,
+     "upstream_ns": 2082875,
+     "attest_overhead_ns": 143584,
+     "present_ns": 199208,
+     "admit_ns": 1452625,
+     "commit_ns": 1280444208,
+     "total_ns": 1285801084
+    },
+    "decided_at": "2026-09-29T22:49:14.458936-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:13.173129-04:00",
+   "decided_first_ns": 1162124000,
+   "decided_all_ns": 1258175000,
+   "rounds": 1
+  },
+  {
+   "i": 4,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 18,
+    "tx_id": "fadc9dbd2ac7bff3a8d4eefe37abb32712309e7c217adee799651beb80f2e3d6",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 14038,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 549167,
+     "intent_ns": 0,
+     "attest_ns": 3007916,
+     "upstream_ns": 2002208,
+     "attest_overhead_ns": 132667,
+     "present_ns": 143042,
+     "admit_ns": 1092042,
+     "commit_ns": 1324136708,
+     "total_ns": 1329014584
+    },
+    "decided_at": "2026-09-29T22:49:15.788272-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:14.459251-04:00",
+   "decided_first_ns": 1297605000,
+   "decided_all_ns": 1308608000,
+   "rounds": 1
+  },
+  {
+   "i": 5,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 19,
+    "tx_id": "4017773485b15f3271aeb6234b4576cdb842597c0f190b4b3fedfa54c1a5fd94",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 23774,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 1345292,
+     "intent_ns": 0,
+     "attest_ns": 4856834,
+     "upstream_ns": 2422958,
+     "attest_overhead_ns": 128583,
+     "present_ns": 142500,
+     "admit_ns": 2093958,
+     "commit_ns": 1241381625,
+     "total_ns": 1249904208
+    },
+    "decided_at": "2026-09-29T22:49:17.038474-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:15.788564-04:00",
+   "decided_first_ns": 1185708000,
+   "decided_all_ns": 1205722000,
+   "rounds": 1
+  },
+  {
+   "i": 6,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 20,
+    "tx_id": "9faf44abea5038fe462e810b2ba9971fb2d10ad05de6c37e92e649685a062810",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 23774,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 1336416,
+     "intent_ns": 0,
+     "attest_ns": 3543166,
+     "upstream_ns": 2068708,
+     "attest_overhead_ns": 77917,
+     "present_ns": 91416,
+     "admit_ns": 1181000,
+     "commit_ns": 1240581250,
+     "total_ns": 1246811875
+    },
+    "decided_at": "2026-09-29T22:49:18.285611-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:17.038793-04:00",
+   "decided_first_ns": 1200946000,
+   "decided_all_ns": 1216453000,
+   "rounds": 1
+  },
+  {
+   "i": 7,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 21,
+    "tx_id": "b3060d5949d771932e957f773acbd935548cd55efacf99228153febe12a5bb33",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 23774,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 1110958,
+     "intent_ns": 0,
+     "attest_ns": 2864375,
+     "upstream_ns": 1938458,
+     "attest_overhead_ns": 128500,
+     "present_ns": 127749,
+     "admit_ns": 1448125,
+     "commit_ns": 1300143417,
+     "total_ns": 1305774458
+    },
+    "decided_at": "2026-09-29T22:49:19.591719-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:18.285937-04:00",
+   "decided_first_ns": 1260322000,
+   "decided_all_ns": 1271326000,
+   "rounds": 1
+  },
+  {
+   "i": 8,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 22,
+    "tx_id": "e08485c9f4fda26fb4e6b82a337983275bfe858c6b09d903aec156c27323cd64",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 23774,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 565209,
+     "intent_ns": 0,
+     "attest_ns": 2182916,
+     "upstream_ns": 1337542,
+     "attest_overhead_ns": 106541,
+     "present_ns": 134500,
+     "admit_ns": 1747166,
+     "commit_ns": 1364088625,
+     "total_ns": 1368769875
+    },
+    "decided_at": "2026-09-29T22:49:20.960642-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:19.591866-04:00",
+   "decided_first_ns": 1308607000,
+   "decided_all_ns": 1325721000,
+   "rounds": 1
+  },
+  {
+   "i": 9,
+   "outcome": {
+    "code": 0,
+    "log": "",
+    "height": 23,
+    "tx_id": "9044017ddebfc8f0cb557886d433e9585670a90fd7b626260ed19039439d7922",
+    "tx_bytes": 15087,
+    "bundle_bytes": 10695,
+    "request_bytes": 23774,
+    "receipt_bytes": 4049,
+    "reviewed": true,
+    "approved": true,
+    "summary": "Approved: no problems found in the change. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. The change was examined for correctness, security and maintainability. Th...",
+    "timeline": {
+     "prepare_ns": 1774459,
+     "intent_ns": 0,
+     "attest_ns": 2753917,
+     "upstream_ns": 1870416,
+     "attest_overhead_ns": 54542,
+     "present_ns": 101833,
+     "admit_ns": 903166,
+     "commit_ns": 1680740458,
+     "total_ns": 1686478166
+    },
+    "decided_at": "2026-09-29T22:49:22.64772-04:00"
+   },
+   "submitted_at": "2026-09-29T22:49:20.961234-04:00",
+   "decided_first_ns": 1584576000,
+   "decided_all_ns": 1607383000,
+   "rounds": 1
+  }
+ ],
+ "summary": {
+  "app_stats_node0": {
+   "verify_count": 20,
+   "verify_ok": 20,
+   "verify_nanos": [
+    121375,
+    115333,
+    254708,
+    138666,
+    148209,
+    163167,
+    189000,
+    171083,
+    173333,
+    319458,
+    720166,
+    500458,
+    1161542,
+    1161083,
+    800917,
+    1767666,
+    1027333,
+    1200833,
+    1286042,
+    745875
+   ],
+   "check_codes": {
+    "ok": 21
+   },
+   "final_codes": {
+    "ok": 21
+   },
+   "rejected_proposals": 0,
+   "baseline_calls": 0,
+   "baseline_errors": 0,
+   "baseline_nanos": null,
+   "cache_hits": 45,
+   "cache_misses": 20
+  },
+  "attest_overhead": {
+   "max_ms": 2.433876,
+   "mean_ms": 1.127925,
+   "min_ms": 0.447583,
+   "n": 10,
+   "p50_ms": 0.925917,
+   "p90_ms": 1.570916,
+   "p99_ms": 2.433876
+  },
+  "avg_receipt_bytes": 4049,
+  "avg_request_bytes": 18906,
+  "avg_tx_bytes": 15087,
+  "client_prepare": {
+   "max_ms": 1.892542,
+   "mean_ms": 1.1049873000000001,
+   "min_ms": 0.443457,
+   "n": 10,
+   "p50_ms": 0.772708,
+   "p90_ms": 1.876292,
+   "p99_ms": 1.892542
+  },
+  "commit": {
+   "max_ms": 1680.740458,
+   "mean_ms": 1329.8837665,
+   "min_ms": 1240.58125,
+   "n": 10,
+   "p50_ms": 1286.925041,
+   "p90_ms": 1364.088625,
+   "p99_ms": 1680.740458
+  },
+  "decided_all": {
+   "max_ms": 1607.383,
+   "mean_ms": 1298.8037,
+   "min_ms": 1205.722,
+   "n": 10,
+   "p50_ms": 1258.175,
+   "p90_ms": 1325.721,
+   "p99_ms": 1607.383
+  },
+  "decided_first": {
+   "max_ms": 1584.576,
+   "mean_ms": 1258.1828,
+   "min_ms": 1149.012,
+   "n": 10,
+   "p50_ms": 1200.946,
+   "p90_ms": 1308.607,
+   "p99_ms": 1584.576
+  },
+  "failed": 0,
+  "llm_upstream": {
+   "max_ms": 2.424334,
+   "mean_ms": 1.9468041,
+   "min_ms": 1.077792,
+   "n": 10,
+   "p50_ms": 2.002208,
+   "p90_ms": 2.422958,
+   "p99_ms": 2.424334
+  },
+  "ok": 10,
+  "rounds_histogram": {
+   "1": 10
+  },
+  "total": {
+   "max_ms": 1686.478166,
+   "mean_ms": 1335.44155,
+   "min_ms": 1246.811875,
+   "n": 10,
+   "p50_ms": 1291.46075,
+   "p90_ms": 1368.769875,
+   "p99_ms": 1686.478166
+  }
+ }
+}

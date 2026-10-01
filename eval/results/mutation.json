@@ -1,0 +1,192 @@
+[
+ {
+  "mutant": "M01 no expected-head check",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 1.4,
+  "killed_by": "--- FAIL: TestConcurrentProposals (0.00s)"
+ },
+ {
+  "mutant": "M02 no policy-version check",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 3.0,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.04s)"
+ },
+ {
+  "mutant": "M03 verdict not checked",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 1.8,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.04s)"
+ },
+ {
+  "mutant": "M04 echoed candidate not checked",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 1.5,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.06s)"
+ },
+ {
+  "mutant": "M05 revealed request body not compared with the recomputed one",
+  "file": "pkg/app/verify.go",
+  "killed": false,
+  "equivalent": true,
+  "note": "attest.ProxyVerifier already binds a Revealed req.body to the value the validator supplies; the comparison in checkTranscript is a second line of defence",
+  "seconds": 3.3
+ },
+ {
+  "mutant": "M06 request headers not restricted",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 1.5,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.05s)"
+ },
+ {
+  "mutant": "M07 any header may be hidden",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 2.8,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.05s)"
+ },
+ {
+  "mutant": "M08 server name not checked",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 3.6,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.04s)"
+ },
+ {
+  "mutant": "M09 HTTP status not checked",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 3.4,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.05s)"
+ },
+ {
+  "mutant": "M10 responding model not checked",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 1.3,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.05s)"
+ },
+ {
+  "mutant": "M11 receipt expiry not checked",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 2.0,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.05s)"
+ },
+ {
+  "mutant": "M12 future receipts accepted",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 3.4,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.05s)"
+ },
+ {
+  "mutant": "M13 envelope signature not verified",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 2.6,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.03s)"
+ },
+ {
+  "mutant": "M14 evidence cached even if it depended on uncommitted objects",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 4.1,
+  "killed_by": "--- FAIL: TestCachePoisoning (0.00s)"
+ },
+ {
+  "mutant": "M15 intent not matched against the change",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 4.4,
+  "killed_by": "--- FAIL: TestIntents (0.01s)"
+ },
+ {
+  "mutant": "M16 intent nonce not bound into the request",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 1.1,
+  "killed_by": "--- FAIL: TestIntents (0.00s)"
+ },
+ {
+  "mutant": "M17 attempts not bounded",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 3.2,
+  "killed_by": "--- FAIL: TestIntents (0.01s)"
+ },
+ {
+  "mutant": "M18 policy update threshold not enforced",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 3.6,
+  "killed_by": "--- FAIL: TestPolicyUpdate (0.00s)"
+ },
+ {
+  "mutant": "M19 policy approvals not signature-checked",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 3.5,
+  "killed_by": "--- FAIL: TestPolicyUpdate (0.00s)"
+ },
+ {
+  "mutant": "M20 policy approvals accepted from non-maintainers",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 4.2,
+  "killed_by": "--- FAIL: TestPolicyUpdate (0.00s)"
+ },
+ {
+  "mutant": "M21 chain id not checked (AcceptCommit)",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 3.7,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.04s)"
+ },
+ {
+  "mutant": "M22 strict ProcessProposal accepts everything",
+  "file": "pkg/app/app.go",
+  "killed": true,
+  "seconds": 4.1,
+  "killed_by": "--- FAIL: TestConcurrentProposals (0.00s)"
+ },
+ {
+  "mutant": "M23 objects not written at commit",
+  "file": "pkg/app/app.go",
+  "killed": true,
+  "seconds": 1.2,
+  "killed_by": "--- FAIL: TestAcceptHappyPath (0.00s)"
+ },
+ {
+  "mutant": "M24 history not written at commit",
+  "file": "pkg/app/app.go",
+  "killed": true,
+  "seconds": 1.8,
+  "killed_by": "--- FAIL: TestAcceptHappyPath (0.01s)"
+ },
+ {
+  "mutant": "M25 intents survive a head change",
+  "file": "pkg/app/exec.go",
+  "killed": true,
+  "seconds": 3.5,
+  "killed_by": "--- FAIL: TestIntents (0.01s)"
+ },
+ {
+  "mutant": "M26 response path not checked",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 3.9,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.06s)"
+ },
+ {
+  "mutant": "M27 response body may be hidden",
+  "file": "pkg/app/verify.go",
+  "killed": true,
+  "seconds": 3.7,
+  "killed_by": "--- FAIL: TestEvidenceRejections (0.04s)"
+ }
+]

@@ -1,0 +1,2 @@
+JOB                                EXPECTATION                    RESULT    GENERATED    DISTINCT  DEPTH     TIME
+SafetyFull                         holds                          PASS        6043941     2004917      6      31s

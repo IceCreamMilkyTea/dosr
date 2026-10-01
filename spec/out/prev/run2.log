@@ -1,0 +1,31 @@
+JOB                                EXPECTATION                    RESULT    GENERATED    DISTINCT  DEPTH     TIME
+Intents                            holds                          PASS       15126878     5261593     12     395s
+IntentsNoGrinding                  holds                          PASS       13285127     6679176     12     229s
+Liveness                           holds                          PASS       15590021     3753018     27     299s
+LivenessByz                        holds                          FAIL      521850804   180317599      -   15462s
+LivenessIntents                    holds                          PASS           1211         945     14       1s
+PolicyEpoch                        violates PolicyEpoch           PASS          71403       38276      6       2s
+WitnessAcceptAfterUpdate           violates NeverAcceptAfterPolicyUpdate PASS         213796       82413      6       2s
+WitnessThreeAccepts                violates NeverThreeAccepts     PASS        6757642     2475996     10      79s
+NoBase_CertifiedHistory            violates CertifiedHistory      PASS          25049       10958      4       1s
+NoBase_NoStaleAccept               violates NoStaleAccept         PASS          25049       10958      4       1s
+NoCandidate_CertifiedHistory       violates CertifiedHistory      PASS           5177        2464      4       1s
+NoHead_LinearHistory               violates LinearHistory         PASS          22173        9752      4       1s
+NoHead_NoReceiptReuse              violates NoReceiptReuse        PASS         808644      276307      6       4s
+NoHead_NoStaleAccept               violates NoStaleAccept         PASS          22173        9752      4       1s
+NoIntentUnused_IntentBinding       violates IntentBinding         FAIL        9264359     2926248     12     510s
+NoIntent_IntentBinding             violates IntentBinding         FAIL        9264359     2926248     12     526s
+NoMember_CertifiedHistory          violates CertifiedHistory      PASS           2386        1213      3       1s
+NoNotaryIntent_BoundedAttempts     violates BoundedAttempts       PASS            553         479      3       0s
+NoNotaryIntent_NoGrinding          violates NoGrinding            FAIL              -           -      -    6979s
+NoNotaryOnce_BoundedAttempts       violates BoundedAttempts       PASS          20048       16856      5       3s
+NoNotaryOnce_NoGrinding            violates NoGrinding            PASS         401257      196602      7      13s
+NoParent_LinearHistory             violates LinearHistory         PASS          17632        7883      4       1s
+NoPolicy_CertifiedHistory          violates CertifiedHistory      PASS          38666       16269      4       1s
+NoPolicy_PolicyBinding             violates PolicyBinding         PASS          38666       16269      4       1s
+NoRestartIndex_Determinism         violates Determinism           PASS         323704      113023      5       3s
+NoRestartIndex_PrefixConsistency   violates PrefixConsistency     PASS      457243218    97052868     10    4077s
+NoVerdict_CertifiedHistory         violates CertifiedHistory      PASS          10244        4666      4       1s
+NoVersion_PolicyAuthorised         violates PolicyAuthorised      PASS         382270      133828      5       3s
+
+SOME JOBS FAILED (see out/<job>.out)

@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"math"
 	"sync"
 	"time"
 
@@ -253,6 +254,194 @@ func EndToEnd(opts Options) error {
 		}
 	}
 	return nil
+}
+
+// EndToEndSize: the full DOSR latency breakdown (client prepare, LLM call
+// under the ASSUMED realistic latency model, attestation overhead, admit,
+// consensus commit, propagation) as a function of change size, 4
+// validators over the WAN preset with CometBFT's default timeouts. The
+// provider's per-input-token term makes the LLM call grow with the
+// rendered request; everything else should stay flat (bundle experiment).
+func EndToEndSize(opts Options) error {
+	sizes := []int{1 << 10, 10 << 10, 100 << 10, 1 << 20}
+	count := opts.reps(6, 3)
+	to := node.DefaultTimeouts()
+	e, err := NewEnv(opts, EnvConfig{Validators: 4, Delays: network("wan", 4), Timeouts: &to, Latency: llm.LatencyRealistic})
+	if err != nil {
+		return err
+	}
+	defer e.Close()
+	for _, size := range sizes {
+		name := fmt.Sprintf("e2e_size_%dk", size/1024)
+		opts.logf("== %s", name)
+		e.Stack.Provider.ResetStats()
+		r := &Result{Experiment: "e2e_size", StartedAt: time.Now(),
+			Params: map[string]any{"mode": "dosr", "latency": "realistic", "validators": 4, "network": "wan", "count": count, "timeouts": "default", "change_bytes": size}}
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Minute)
+		r.Samples, r.Notes = e.sequential(ctx, e.Contributor(0, "seq", false), count, size, name)
+		cancel()
+		r.Summary = timelineSummary(r.Samples)
+		// Admit (broadcast -> CheckTx answered) and the attestor call as a
+		// whole are not in timelineSummary; they matter for the decomposition.
+		var admit, attest, present []int64
+		for _, s := range r.Samples {
+			if s.Outcome == nil || s.Err != "" {
+				continue
+			}
+			tl := s.Outcome.Timeline
+			admit = append(admit, int64(tl.Admit))
+			attest = append(attest, int64(tl.Attest))
+			present = append(present, int64(tl.Present))
+		}
+		r.Summary["admit"] = Percentiles(admit)
+		r.Summary["attest_total"] = Percentiles(attest)
+		r.Summary["present"] = Percentiles(present)
+		ps := e.Stack.Provider.Stats()
+		r.Summary["provider"] = ps
+		r.Summary["block_interval"] = e.Cluster.BlockIntervals(0, 2, e.Cluster.MaxHeight()).String()
+		r.Summary["app_stats_node0"] = e.Cluster.App(0).StatsSnapshot()
+		if rep := e.Cluster.Check(); !rep.OK() {
+			r.Notes = append(r.Notes, "INVARIANT VIOLATION: "+rep.String())
+		}
+		r.Duration = time.Since(r.StartedAt)
+		if err := opts.Save(r, name); err != nil {
+			return err
+		}
+		opts.logf("   ok %d/%d, request %.0f bytes, llm p50 %.0f ms, commit p50 %.0f ms, total p50 %.0f ms, decided-all p50 %.0f ms",
+			r.Summary["ok"], count, r.Summary["avg_request_bytes"], r.Summary["llm_upstream"].(map[string]any)["p50_ms"],
+			r.Summary["commit"].(map[string]any)["p50_ms"], r.Summary["total"].(map[string]any)["p50_ms"],
+			r.Summary["decided_all"].(map[string]any)["p50_ms"])
+	}
+	return nil
+}
+
+// Propagation: how long after the first validator commits a block do the
+// other validators and the non-validator full nodes (which receive blocks
+// by gossip / block sync and are what a `git clone` would talk to) have
+// it? 4 validators + {0, 2, 4} full nodes on the regional preset with fast
+// timeouts and no LLM latency, so the spread is the network's and the
+// nodes' own. Per decided height the per-node commit timestamps come from
+// the nodes' commit records (one clock, same machine).
+func Propagation(opts Options) error {
+	fulls := []int{0, 2, 4}
+	if opts.Quick {
+		fulls = []int{0, 2}
+	}
+	count := opts.reps(10, 4)
+	for _, k := range fulls {
+		name := fmt.Sprintf("propagation_f%d", k)
+		opts.logf("== %s", name)
+		to := timeouts("fast")
+		n := 4 + k
+		e, err := NewEnv(opts, EnvConfig{Validators: 4, FullNodes: k, Delays: network("regional", n), Timeouts: &to})
+		if err != nil {
+			return fmt.Errorf("%s: %w", name, err)
+		}
+		r := &Result{Experiment: "propagation", StartedAt: time.Now(),
+			Params: map[string]any{"validators": 4, "full_nodes": k, "network": "regional", "timeouts": "fast", "count": count, "change_bytes": 512}}
+		ctx, cancel := context.WithTimeout(context.Background(), 20*time.Minute)
+		r.Samples, r.Notes = e.sequential(ctx, e.Contributor(0, "seq", false), count, 512, name)
+		cancel()
+		var vSpread, fSpread, fAfterFirst, allSpread, vFirst, vLast, fLast []int64
+		for i := range r.Samples {
+			s := &r.Samples[i]
+			if s.Outcome == nil || s.Err != "" || s.Outcome.Height == 0 {
+				continue
+			}
+			sp := e.commitSpread(s.Outcome.Height)
+			s.Extra = map[string]any{
+				"validator_first_ms":  float64(sp.vFirst-s.SubmittedAt.UnixNano()) / 1e6,
+				"validator_last_ms":   float64(sp.vLast-s.SubmittedAt.UnixNano()) / 1e6,
+				"validator_spread_ms": float64(sp.vLast-sp.vFirst) / 1e6,
+				"validators_seen":     sp.vN,
+				"full_nodes_seen":     sp.fN,
+			}
+			vSpread = append(vSpread, sp.vLast-sp.vFirst)
+			vFirst = append(vFirst, sp.vFirst-s.SubmittedAt.UnixNano())
+			vLast = append(vLast, sp.vLast-s.SubmittedAt.UnixNano())
+			if sp.fN > 0 {
+				s.Extra["full_first_ms"] = float64(sp.fFirst-s.SubmittedAt.UnixNano()) / 1e6
+				s.Extra["full_last_ms"] = float64(sp.fLast-s.SubmittedAt.UnixNano()) / 1e6
+				s.Extra["full_spread_ms"] = float64(sp.fLast-sp.fFirst) / 1e6
+				s.Extra["full_after_first_validator_ms"] = float64(sp.fLast-sp.vFirst) / 1e6
+				fSpread = append(fSpread, sp.fLast-sp.fFirst)
+				fAfterFirst = append(fAfterFirst, sp.fLast-sp.vFirst)
+				fLast = append(fLast, sp.fLast-s.SubmittedAt.UnixNano())
+				allSpread = append(allSpread, max(sp.vLast, sp.fLast)-sp.vFirst)
+			} else {
+				allSpread = append(allSpread, sp.vLast-sp.vFirst)
+			}
+		}
+		r.Summary = timelineSummary(r.Samples)
+		r.Summary["validator_first"] = Percentiles(vFirst)
+		r.Summary["validator_last"] = Percentiles(vLast)
+		r.Summary["validator_spread"] = Percentiles(vSpread)
+		r.Summary["full_last"] = Percentiles(fLast)
+		r.Summary["full_spread"] = Percentiles(fSpread)
+		r.Summary["full_after_first_validator"] = Percentiles(fAfterFirst)
+		r.Summary["all_spread"] = Percentiles(allSpread)
+		r.Summary["block_interval"] = e.Cluster.BlockIntervals(0, 2, e.Cluster.MaxHeight()).String()
+		if rep := e.Cluster.Check(); !rep.OK() {
+			r.Notes = append(r.Notes, "INVARIANT VIOLATION: "+rep.String())
+		}
+		r.Duration = time.Since(r.StartedAt)
+		e.Close()
+		if err := opts.Save(r, name); err != nil {
+			return err
+		}
+		opts.logf("   validator spread p50 %.1f ms, full nodes after first validator p50 %.1f ms, decided-all p50 %.0f ms",
+			p50(r.Summary["validator_spread"]), p50(r.Summary["full_after_first_validator"]), p50(r.Summary["decided_all"]))
+	}
+	return nil
+}
+
+// p50 returns the p50 of a Percentiles map (NaN if empty).
+func p50(v any) float64 {
+	if m, ok := v.(map[string]any); ok {
+		if f, ok := m["p50_ms"].(float64); ok {
+			return f
+		}
+	}
+	return math.NaN()
+}
+
+// spread of commit timestamps of one height over validators and full nodes.
+type spread struct {
+	vFirst, vLast, fFirst, fLast int64
+	vN, fN                       int
+}
+
+// commitSpread reads the commit records of all running honest nodes for
+// height h, waiting briefly for lagging nodes (full nodes may receive the
+// block a little after the validators).
+func (e *Env) commitSpread(h int64) spread {
+	c := e.Cluster
+	deadline := time.Now().Add(10 * time.Second)
+	var sp spread
+	for {
+		sp = spread{vFirst: math.MaxInt64, fFirst: math.MaxInt64}
+		for i := 0; i < c.N(); i++ {
+			if !c.Running(i) || c.Byzantine(i) {
+				continue
+			}
+			rec, ok := c.Commits(i)[h]
+			if !ok {
+				continue
+			}
+			t := rec.CommittedAtUnixNano
+			if c.IsValidator(i) {
+				sp.vN++
+				sp.vFirst, sp.vLast = min(sp.vFirst, t), max(sp.vLast, t)
+			} else {
+				sp.fN++
+				sp.fFirst, sp.fLast = min(sp.fFirst, t), max(sp.fLast, t)
+			}
+		}
+		if sp.vN+sp.fN >= e.honestRunning() || time.Now().After(deadline) {
+			return sp
+		}
+		time.Sleep(5 * time.Millisecond)
+	}
 }
 
 // Contention: k contributors each need m changes accepted on the same

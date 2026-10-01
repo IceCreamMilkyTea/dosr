@@ -16,6 +16,7 @@ Gage Garcia, Yuhan Wei.
 | [docs/DESIGN.md](docs/DESIGN.md) | The normative design: model, evidence, state machine, ABCI mapping, invariants, attacks, limitations |
 | [docs/LITERATURE_REVIEW.md](docs/LITERATURE_REVIEW.md) | Synthesis of the three-part literature review in `docs/literature/` |
 | [docs/EVALUATION.md](docs/EVALUATION.md) | Experiment design, metrics, and discussion of the results |
+| [docs/ANALYSIS.md](docs/ANALYSIS.md) | PR quality, cost per PR (good and bad), and latency — point-by-point answers; details in `docs/analysis/` |
 | [eval/results/SUMMARY.md](eval/results/SUMMARY.md) | Generated tables and figures |
 | [docs/notes/](docs/notes/) | Engineering logs: every problem met and how it was resolved (design log, per-package implementation notes, testnet notes, TLA+ notes) |
 | [spec/README.md](spec/README.md) | TLA+ model and TLC results |
@@ -37,6 +38,8 @@ pkg/dosrtest   in-memory fixtures: repositories, receipts, transactions
 pkg/e2e        whole-stack tests
 pkg/bench      evaluation experiments
 cmd/dosrd      node daemon      cmd/dosr  contributor CLI      cmd/dosr-bench  evaluation
+cmd/dosr-dev   local demo stack cmd/dosr-cost  request sizes of real commits
+cmd/dosr-prstudy  PR quality study: corpus builder + runner (needs a real API key for real verdicts)
 spec/          TLA+ model, configs, mutants, TLC outputs
 scripts/       mutation_test.py
 reference/     (git-ignored) clones of CometBFT, Gitopia, TLSNotary used as references

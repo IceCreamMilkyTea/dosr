@@ -99,7 +99,7 @@ if bun:
     md += ["", "![](figures/bundle_size.png)", ""]
 
 # ------------------------------------------------------------ e2e breakdown
-e2e = {k: r for k, r in results.items() if k.startswith("e2e_")}
+e2e = {k: r for k, r in results.items() if k.startswith("e2e_") and not k.startswith("e2e_size_")}
 if e2e:
     md += ["## End-to-end latency breakdown and cost: DOSR vs every-validator-reviews", "",
            "| mode | LLM latency | accepted | total p50 | total p90 | LLM call p50 | attest overhead p50 | commit p50 | rounds | provider calls | calls / accepted | cost USD |",
@@ -123,6 +123,69 @@ if e2e:
     fig.tight_layout(); fig.savefig(os.path.join(FIG, "e2e_breakdown.png")); plt.close(fig)
     md += ["", "In baseline mode validators call the LLM while forming their vote; the 'commit' column then contains the validators' LLM calls "
            "(the notes column 'rounds' shows how many consensus rounds each block needed).", "", "![](figures/e2e_breakdown.png)", ""]
+
+# ------------------------------------------------------------ e2e vs change size
+e2s = {k: r for k, r in results.items() if k.startswith("e2e_size_")}
+if e2s:
+    rows = sorted(e2s.values(), key=lambda r: r["params"]["change_bytes"])
+    md += ["## End-to-end latency vs change size (DOSR, 4 validators, WAN, default timeouts, ASSUMED realistic LLM latency)", "",
+           "| change bytes | request bytes | tx bytes | accepted | client prepare p50 ms | LLM call p50 ms | attest overhead p50 ms | admit p50 ms | commit p50 ms | total p50 ms | total p90 ms | decided_all p50 ms |",
+           "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    labels, parts, dall = [], [], []
+    for r in rows:
+        p, s = r["params"], r["summary"]
+        md.append(f"| {p['change_bytes']} | {s['avg_request_bytes']:.0f} | {s['avg_tx_bytes']:.0f} | {s['ok']}/{p['count']} | {ms(s['client_prepare']):.2f} | "
+                  f"{ms(s['llm_upstream']):.0f} | {ms(s['attest_overhead']):.1f} | {ms(s.get('admit', {})):.1f} | {ms(s['commit']):.0f} | "
+                  f"{ms(s['total']):.0f} | {ms(s['total'],'p90_ms'):.0f} | {ms(s['decided_all']):.0f} |")
+        kb = p["change_bytes"] / 1024
+        labels.append(f"{kb:g} KB" if kb < 1024 else f"{kb/1024:g} MB")
+        parts.append((ms(s["client_prepare"]), ms(s["llm_upstream"]), ms(s["attest_overhead"]) + ms(s.get("admit", {})), ms(s["commit"])))
+        dall.append(ms(s["decided_all"]))
+    fig, ax = plt.subplots(figsize=(6, 3.4))
+    bottom = [0]*len(parts)
+    for i, (nm, col) in enumerate([("client prepare", C[4]), ("LLM call (assumed model)", C[1]), ("attestation + admit", C[3]), ("consensus commit", C[0])]):
+        vals = [p[i] for p in parts]
+        ax.bar(labels, vals, bottom=bottom, color=col, label=nm, width=0.6, edgecolor="white", linewidth=1)
+        bottom = [b+v for b, v in zip(bottom, vals)]
+    for x, (b, d) in enumerate(zip(bottom, dall)):
+        ax.text(x, b, f"{b/1000:.1f} s", ha="center", va="bottom", fontsize=8)
+    ax.set_ylabel("p50 ms"); ax.set_xlabel("change size")
+    ax.set_title("End-to-end latency vs change size (4 validators, WAN)"); ax.legend(fontsize=8, loc="upper left")
+    fig.tight_layout(); fig.savefig(os.path.join(FIG, "e2e_size.png")); plt.close(fig)
+    md += ["", "The LLM call is the mock provider's ASSUMED model (ttft lognormal median 1.2 s, 60 output tok/s, 50 us per input token with tokens = bytes/4); "
+           "its growth with size is the per-input-token term, not a measurement of any provider. 'attest overhead' = attestor time minus the upstream call; "
+           "'admit' = broadcast until CheckTx answered.", "", "![](figures/e2e_size.png)", ""]
+
+# ------------------------------------------------------------ propagation to full nodes
+prop = {k: r for k, r in results.items() if k.startswith("propagation_")}
+if prop:
+    rows = sorted(prop.values(), key=lambda r: r["params"]["full_nodes"])
+    md += ["## Propagation to validators and non-validator full nodes (4 validators, regional, fast timeouts, no LLM latency)", "",
+           "| full nodes | accepted | commit p50 ms | first validator p50 ms | last validator p50 ms | validator spread p50 / p90 / max ms | last full node p50 ms | full-node spread p50 / p90 / max ms | last full node after first validator p50 / p90 / max ms | decided_all p50 ms | block interval |",
+           "|---|---|---|---|---|---|---|---|---|---|---|"]
+    xs, vs, fs = [], [], []
+    def trio(d):
+        return f"{ms(d):.1f} / {ms(d,'p90_ms'):.1f} / {ms(d,'max_ms'):.1f}" if d.get("n") else "-"
+    def one(d):
+        return f"{ms(d):.0f}" if d.get("n") else "-"
+    for r in rows:
+        p, s = r["params"], r["summary"]
+        md.append(f"| {p['full_nodes']} | {s['ok']}/{p['count']} | {ms(s['commit']):.0f} | {ms(s['validator_first']):.0f} | {ms(s['validator_last']):.0f} | "
+                  f"{trio(s['validator_spread'])} | {one(s['full_last'])} | {trio(s['full_spread'])} | {trio(s['full_after_first_validator'])} | "
+                  f"{ms(s['decided_all']):.0f} | {s.get('block_interval','')} |")
+        xs.append(p["full_nodes"]); vs.append((ms(s["validator_spread"]), ms(s["validator_spread"], "p90_ms")))
+        fs.append((ms(s["full_after_first_validator"]), ms(s["full_after_first_validator"], "p90_ms")))
+    fig, ax = plt.subplots(figsize=(5.5, 3.2))
+    ax.errorbar(xs, [v[0] for v in vs], yerr=[[0]*len(vs), [v[1]-v[0] for v in vs]], fmt="o-", color=C[0], capsize=3, label="last validator after first validator")
+    fx = [x for x, f in zip(xs, fs) if f[0] == f[0]]
+    fy = [f for f in fs if f[0] == f[0]]
+    if fy:
+        ax.errorbar(fx, [f[0] for f in fy], yerr=[[0]*len(fy), [f[1]-f[0] for f in fy]], fmt="s--", color=C[2], capsize=3, label="last full node after first validator")
+    ax.set_xlabel("non-validator full nodes (plus 4 validators)"); ax.set_ylabel("p50 ms, bar to p90"); ax.set_xticks(xs)
+    ax.set_ylim(bottom=0); ax.set_title("Block propagation spread (regional, fast timeouts)"); ax.legend(fontsize=8)
+    fig.tight_layout(); fig.savefig(os.path.join(FIG, "propagation.png")); plt.close(fig)
+    md += ["", "Spreads are differences of the nodes' own commit timestamps (one clock, one machine) for the height that decided each submission; "
+           "a full node follows consensus through the consensus reactor and commits when it has the block and +2/3 precommits.", "", "![](figures/propagation.png)", ""]
 
 # ------------------------------------------------------------ contention
 con = {k: r for k, r in results.items() if k.startswith("contention_")}

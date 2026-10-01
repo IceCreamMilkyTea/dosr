@@ -130,7 +130,7 @@ func New(db dbm.DB, cfg Config) (*App, error) {
 		if err := json.Unmarshal(raw, st); err != nil {
 			return nil, fmt.Errorf("app: decode state: %w", err)
 		}
-		if st.Repos == nil || st.Intents == nil || st.Attempts == nil {
+		if st.Repos == nil || st.Intents == nil || st.Attempts == nil || st.Reputation == nil {
 			return nil, fmt.Errorf("app: corrupt state")
 		}
 	}

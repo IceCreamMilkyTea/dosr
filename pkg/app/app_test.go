@@ -2,9 +2,13 @@ package app
 
 import (
 	"bytes"
+	"crypto/ed25519"
+	"encoding/hex"
 	"encoding/json"
 	"strings"
 	"testing"
+
+	abci "github.com/cometbft/cometbft/abci/types"
 
 	"github.com/dosr/dosr/pkg/attest"
 	"github.com/dosr/dosr/pkg/dosrtest"
@@ -423,6 +427,129 @@ func TestIntents(t *testing.T) {
 	}
 	// Intents for a stale head are refused.
 	wantCodes(t, c.forcedBlock(i3.Bytes()), types.CodeStaleHead)
+}
+
+// TestReputation checks the per-identity counters: they advance on an
+// accepted commit (including the genesis commit of a created repository)
+// and on a registered intent, never on a failed transaction, are never
+// pruned, survive a restart, are identical on every replica (the driver
+// asserts that after every block) and are served by /reputation.
+func TestReputation(t *testing.T) {
+	c := newChain(t, threeReplicas()...)
+	s := newScenario(c, "alpha", func(p *types.Policy) { p.RequireIntent = true; p.MaxAttempts = 2 })
+	userHex := hex.EncodeToString(s.user.Public().(ed25519.PublicKey))
+	rep := func(k string) *Reputation {
+		t.Helper()
+		r := c.app().Committed().Reputation[k]
+		if r == nil {
+			t.Fatalf("no reputation for %s", k)
+		}
+		return r
+	}
+	want := func(k string, intents, accepted uint64) {
+		t.Helper()
+		if r := rep(k); r.Intents != intents || r.Accepted != accepted {
+			t.Fatalf("reputation %s = %+v, want intents %d accepted %d", k, *r, intents, accepted)
+		}
+	}
+	// The genesis commit counts for the creator.
+	want(userHex, 0, 1)
+	if h := rep(userHex).FirstHeight; h != 1 {
+		t.Fatalf("first height = %d", h)
+	}
+	h := c.head("alpha", "main")
+	c1, b1 := s.change(h, "a", "1\n", "one")
+
+	// Failed transactions do not count: an accept without the required
+	// intent, from the known identity ...
+	wantCodes(t, c.forcedBlock(s.tx(s.review(h, c1, b1))), types.CodeIntentRequired)
+	want(userHex, 0, 1)
+	// ... and a rejected review and a stale intent from a fresh identity,
+	// which must not even create a record.
+	mallory := dosrtest.Key("mallory")
+	malloryHex := hex.EncodeToString(mallory.Public().(ed25519.PublicKey))
+	rv := s.review(h, c1, b1)
+	rv.Reject = true
+	mtx, err := c.w.AcceptTx(mallory, rv, s.git.Store)
+	if err != nil {
+		t.Fatal(err)
+	}
+	mi, _ := c.w.IntentTx(mallory, "alpha", "main", c1, h) // c1 is not the head
+	wantCodes(t, c.forcedBlock(mtx.Bytes(), mi.Bytes()), types.CodeIntentRequired, types.CodeStaleHead)
+	if _, ok := c.app().Committed().Reputation[malloryHex]; ok {
+		t.Fatal("failed transactions created a reputation record")
+	}
+
+	// Intents count, up to MaxAttempts; the refused third one does not.
+	i1, _ := c.w.IntentTx(s.user, "alpha", "main", h, c1)
+	wantCodes(t, c.block(0, i1.Bytes()), types.CodeOK)
+	want(userHex, 1, 1)
+	c2, _ := s.change(h, "b", "2\n", "two")
+	i2, _ := c.w.IntentTx(s.user, "alpha", "main", h, c2)
+	c3, _ := s.change(h, "c", "3\n", "three")
+	i3, _ := c.w.IntentTx(s.user, "alpha", "main", h, c3)
+	wantCodes(t, c.forcedBlock(i2.Bytes(), i3.Bytes()), types.CodeOK, types.CodeTooManyAttempts)
+	want(userHex, 2, 1)
+
+	// The accept counts, and pruning the intents of the branch leaves the
+	// lifetime counters alone.
+	rv = s.review(h, c1, b1)
+	rv.Intent, rv.Nonce = i1.ID().String(), c.app().Committed().Intents[i1.ID().String()].Nonce
+	wantCodes(t, c.block(0, s.tx(rv)), types.CodeOK)
+	want(userHex, 2, 2)
+	if st := c.app().Committed(); len(st.Intents) != 0 || len(st.Attempts) != 0 {
+		t.Fatal("intents not pruned")
+	}
+
+	// A second identity on a repository without intents: only Accepted
+	// moves, FirstHeight is the height of its first accepted transaction.
+	s2 := newScenario(c, "beta", nil)
+	user2Hex := hex.EncodeToString(s2.user.Public().(ed25519.PublicKey))
+	want(user2Hex, 0, 1)
+	if r := rep(user2Hex); r.FirstHeight != c.height {
+		t.Fatalf("first height = %d, want %d", r.FirstHeight, c.height)
+	}
+	h2 := c.head("beta", "main")
+	d1, e1 := s2.change(h2, "a", "1\n", "one")
+	wantCodes(t, c.block(1, s2.tx(s2.review(h2, d1, e1))), types.CodeOK)
+	want(user2Hex, 0, 2)
+	want(userHex, 2, 2)
+
+	// Survives a restart and is in the app hash.
+	before := c.replicas[2].app.Committed().ComputeAppHash()
+	c.reopen(2)
+	after := c.replicas[2].app.Committed()
+	if !bytes.Equal(before, after.ComputeAppHash()) || after.Reputation[userHex].Accepted != 2 {
+		t.Fatal("reputation lost across restart")
+	}
+	withoutRep := after.Clone()
+	withoutRep.Reputation = map[string]*Reputation{}
+	if bytes.Equal(before, withoutRep.ComputeAppHash()) {
+		t.Fatal("reputation is not covered by the app hash")
+	}
+
+	// Queries.
+	ctx := t.Context()
+	res, err := c.app().Query(ctx, &abci.RequestQuery{Path: "/reputation/" + userHex})
+	if err != nil || res.Code != 0 {
+		t.Fatalf("query: %v %+v", err, res)
+	}
+	var one Reputation
+	if err := json.Unmarshal(res.Value, &one); err != nil || one.Accepted != 2 || one.Intents != 2 {
+		t.Fatalf("query value %s: %v", res.Value, err)
+	}
+	res, _ = c.app().Query(ctx, &abci.RequestQuery{Path: "/reputation/" + malloryHex})
+	if res.Code == 0 {
+		t.Fatal("unknown identity has a reputation")
+	}
+	res, _ = c.app().Query(ctx, &abci.RequestQuery{Path: "/reputation"})
+	var all []ReputationEntry
+	if err := json.Unmarshal(res.Value, &all); err != nil || len(all) != 2 {
+		t.Fatalf("listing %s: %v", res.Value, err)
+	}
+	if all[0].PubKey > all[1].PubKey {
+		t.Fatal("listing not sorted")
+	}
 }
 
 // TestRestartRecovers checks durability: a replica re-opened from its

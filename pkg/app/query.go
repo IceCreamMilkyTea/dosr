@@ -20,6 +20,8 @@ import (
 //	/head/<repo>/<branch>           Branch
 //	/history/<repo>/<branch>        data = "from,limit" (optional); []HistoryEntry
 //	/intent/<id>                    Intent
+//	/reputation                     []ReputationEntry, sorted by hex pubkey
+//	/reputation/<hex pubkey>        Reputation
 //	/object/<repo>/<id>             raw: type byte || object data
 //	/stats                          StatsSnapshot (node-local, not replicated)
 //
@@ -98,6 +100,18 @@ func (a *App) Query(_ context.Context, req *abci.RequestQuery) (*abci.ResponseQu
 			return notFound("intent")
 		}
 		return ok(in)
+	case len(parts) == 1 && parts[0] == "reputation":
+		out := []ReputationEntry{}
+		for _, k := range sortedKeys(st.Reputation) {
+			out = append(out, ReputationEntry{PubKey: k, Reputation: *st.Reputation[k]})
+		}
+		return ok(out)
+	case len(parts) == 2 && parts[0] == "reputation":
+		r, found := st.Reputation[strings.ToLower(parts[1])]
+		if !found {
+			return notFound("reputation")
+		}
+		return ok(r)
 	case len(parts) == 3 && parts[0] == "object":
 		id, err := gitobj.ParseID(parts[2])
 		if err != nil {
@@ -113,6 +127,12 @@ func (a *App) Query(_ context.Context, req *abci.RequestQuery) (*abci.ResponseQu
 		return &abci.ResponseQuery{Code: 0, Value: v, Height: st.Height}, nil
 	}
 	return notFound("path")
+}
+
+// ReputationEntry is one row of the /reputation listing.
+type ReputationEntry struct {
+	PubKey string `json:"pubkey"`
+	Reputation
 }
 
 // History returns a committed history entry, or nil if there is none.

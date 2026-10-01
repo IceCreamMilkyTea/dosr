@@ -145,6 +145,7 @@ func (a *App) execCreateRepo(c *execCtx, tx *types.Tx) result {
 	if bundle != nil {
 		mustApply(c.objs.Repo(b.Repo), bundle)
 		c.hist = append(c.hist, entry)
+		c.st.reputationOf(tx.PubKey, c.height).Accepted++
 	}
 	repo.Branches[b.Branch] = br
 	c.st.Repos[b.Repo] = repo
@@ -231,6 +232,7 @@ func (a *App) execAcceptCommit(c *execCtx, tx *types.Tx) result {
 		HistDigest: chainDigest(br.HistDigest, entry),
 	}
 	c.hist = append(c.hist, entry)
+	c.st.reputationOf(tx.PubKey, c.height).Accepted++
 	// Every outstanding intent of this branch was for the old head.
 	c.st.pruneIntents(b.Repo, b.Branch)
 
@@ -390,6 +392,7 @@ func (a *App) execReviewIntent(c *execCtx, tx *types.Tx) result {
 	}
 	c.st.Attempts[ak]++
 	c.st.Intents[id.String()] = in
+	c.st.reputationOf(tx.PubKey, c.height).Intents++
 	return result{events: []abci.Event{ev("dosr.intent",
 		"id", id.String(), "repo", b.Repo, "branch", b.Branch,
 		"candidate", b.Candidate.String(), "nonce", hex.EncodeToString(in.Nonce))}}

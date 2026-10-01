@@ -62,6 +62,31 @@ In baseline mode validators call the LLM while forming their vote; the 'commit' 
 
 ![](figures/e2e_breakdown.png)
 
+## End-to-end latency vs change size (DOSR, 4 validators, WAN, default timeouts, ASSUMED realistic LLM latency)
+
+| change bytes | request bytes | tx bytes | accepted | client prepare p50 ms | LLM call p50 ms | attest overhead p50 ms | admit p50 ms | commit p50 ms | total p50 ms | total p90 ms | decided_all p50 ms |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1024 | 3410 | 5826 | 6/6 | 0.08 | 6662 | 0.3 | 0.2 | 1000 | 7745 | 8178 | 7747 |
+| 10240 | 15663 | 15089 | 6/6 | 0.28 | 6568 | 0.4 | 0.5 | 960 | 7935 | 8070 | 7980 |
+| 102400 | 137336 | 107269 | 6/6 | 1.82 | 7613 | 1.2 | 2.7 | 561 | 9279 | 10667 | 9304 |
+| 1048576 | 1294612 | 1054064 | 6/6 | 6.77 | 20583 | 8.3 | 10.7 | 661 | 21271 | 35726 | 21305 |
+
+The LLM call is the mock provider's ASSUMED model (ttft lognormal median 1.2 s, 60 output tok/s, 50 us per input token with tokens = bytes/4); its growth with size is the per-input-token term, not a measurement of any provider. 'attest overhead' = attestor time minus the upstream call; 'admit' = broadcast until CheckTx answered.
+
+![](figures/e2e_size.png)
+
+## Propagation to validators and non-validator full nodes (4 validators, regional, fast timeouts, no LLM latency)
+
+| full nodes | accepted | commit p50 ms | first validator p50 ms | last validator p50 ms | validator spread p50 / p90 / max ms | last full node p50 ms | full-node spread p50 / p90 / max ms | last full node after first validator p50 / p90 / max ms | decided_all p50 ms | block interval |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | 10/10 | 601 | 553 | 567 | 11.0 / 21.7 / 23.0 | - | - | - | 567 | 22 intervals (heights 2..24): mean 305ms median 303ms p95 308ms min 290ms max 385ms |
+| 2 | 10/10 | 700 | 649 | 659 | 10.9 / 19.0 / 24.9 | 660 | 3.0 / 8.6 / 8.9 | 10.9 / 21.7 / 27.6 | 662 | 22 intervals (heights 2..24): mean 351ms median 385ms p95 401ms min 292ms max 408ms |
+| 4 | 10/10 | 784 | 737 | 753 | 15.0 / 28.0 / 115.0 | 753 | 12.2 / 17.0 / 19.1 | 15.8 / 25.1 / 115.0 | 753 | 22 intervals (heights 2..24): mean 392ms median 404ms p95 418ms min 291ms max 429ms |
+
+Spreads are differences of the nodes' own commit timestamps (one clock, one machine) for the height that decided each submission; a full node follows consensus through the consensus reactor and commits when it has the block and +2/3 precommits.
+
+![](figures/propagation.png)
+
 ## Head contention: optimistic concurrency cost
 
 | contributors | accepted | reviews | reviews / accepted | wall s | accepted / min | cost USD |

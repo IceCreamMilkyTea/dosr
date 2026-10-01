@@ -168,6 +168,20 @@ would build the final report around:
   to 8) is the argument for leases/batching in the next phase; and the
   experiment found a real client bug first.
 
+## 5b. PR quality, cost and latency analysis (added 2026-10-01)
+
+[ANALYSIS.md](ANALYSIS.md) answers the team's follow-up questions point by
+point. Highlights: a review of a real CometBFT commit costs $0.012–0.17
+depending on model (p50–p90 sizes); a tiered model policy saves 41 % on the
+real commit mix; attacker cost per accepted bad PR is `c / p_bad` and only
+deters spam unless the model's `p_bad` is far below 1 %; per-identity
+accepted/intents counters are now on-chain; end-to-end latency is 7–9 s for
+real-sized PRs under the assumed LLM model, of which DOSR's own work is
+milliseconds; full nodes see a decided block within ~15 ms of validators.
+The real-model PR-quality study (300-case corpus, 4 prompt variants) is built
+and costs ≈ $15–60 per model to run; it is the single most valuable next
+experiment.
+
 ## 6. Limitations, stated plainly
 
 * The attestor is a trusted proxy that sees plaintext and the API key. The

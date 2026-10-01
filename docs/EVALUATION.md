@@ -77,6 +77,8 @@ decided_first / decided_all   Submit start → first / last honest node durably 
 | E5 | `contention` — *k* contributors on one branch | *k* ∈ {1, 2, 4, 8}, 4 changes each, fast LLM |
 | E6 | `faults` — a submission stream through faults | kill/restart validator 3; partition 3|1 (client on minority, then majority); heal |
 | E7 | `grinding` — resampling until approval | *p*=0.25, 12 tries max, {no intents, intents with MaxAttempts 3 + single-use nonces} |
+| E8 | `e2e_size` — end-to-end breakdown vs change size | DOSR, 1 KB … 1 MB, *n*=4, wan, default timeouts, realistic LLM latency; 6 submissions per size (see `docs/analysis/03_latency.md`) |
+| E9 | `propagation` — commit spread over validators and non-validator full nodes | 4 validators + {0, 2, 4} full nodes, regional, fast timeouts, no LLM latency, 10 submissions |
 
 **Baseline (E4).** "Every validator reviews": receipts are ignored; each
 validator recomputes the canonical request and calls the provider itself

@@ -234,15 +234,18 @@ type Env struct {
 // EnvConfig configures an environment.
 type EnvConfig struct {
 	Validators int
-	Delays     testnet.Matrix
-	Timeouts   *node.Timeouts
-	Latency    llm.LatencyModel
-	Verdict    llm.VerdictFunc
-	Intents    int
-	Nonces     bool
-	Baseline   bool
-	AppFor     func(i int, cfg *app.Config)
-	Faults     map[int]*app.Faults
+	// FullNodes are non-validator nodes (indices Validators..N-1) that
+	// receive blocks by gossip / block sync; Delays must cover them.
+	FullNodes int
+	Delays    testnet.Matrix
+	Timeouts  *node.Timeouts
+	Latency   llm.LatencyModel
+	Verdict   llm.VerdictFunc
+	Intents   int
+	Nonces    bool
+	Baseline  bool
+	AppFor    func(i int, cfg *app.Config)
+	Faults    map[int]*app.Faults
 }
 
 // NewEnv starts a cluster, the stack and a repository.
@@ -251,7 +254,7 @@ func NewEnv(opts Options, cfg EnvConfig) (*Env, error) {
 	if err != nil {
 		return nil, err
 	}
-	tOpts := testnet.Options{Validators: cfg.Validators, Delays: cfg.Delays, JitterFrac: 0.1, Faults: cfg.Faults, LogLevel: "error"}
+	tOpts := testnet.Options{Validators: cfg.Validators, FullNodes: cfg.FullNodes, Delays: cfg.Delays, JitterFrac: 0.1, Faults: cfg.Faults, LogLevel: "error"}
 	if cfg.Timeouts != nil {
 		tOpts.Timeouts = *cfg.Timeouts
 	}

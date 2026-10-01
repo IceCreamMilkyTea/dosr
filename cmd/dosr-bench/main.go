@@ -1,6 +1,6 @@
 // Command dosr-bench runs the evaluation experiments.
 //
-//	dosr-bench -exp all|verify|consensus|bundle|e2e|contention|faults|grinding [-quick] [-out eval/results/raw]
+//	dosr-bench -exp all|verify|consensus|bundle|e2e|e2e_size|propagation|contention|faults|grinding [-quick] [-out eval/results/raw]
 package main
 
 import (
@@ -24,9 +24,10 @@ func main() {
 	}}
 	all := map[string]func(bench.Options) error{
 		"verify": bench.Verify, "consensus": bench.Consensus, "bundle": bench.BundleSize,
-		"e2e": bench.EndToEnd, "contention": bench.Contention, "faults": bench.Faults, "grinding": bench.Grinding,
+		"e2e": bench.EndToEnd, "e2e_size": bench.EndToEndSize, "propagation": bench.Propagation,
+		"contention": bench.Contention, "faults": bench.Faults, "grinding": bench.Grinding,
 	}
-	order := []string{"verify", "consensus", "bundle", "e2e", "contention", "faults", "grinding"}
+	order := []string{"verify", "consensus", "bundle", "e2e", "e2e_size", "propagation", "contention", "faults", "grinding"}
 	var run []string
 	if *exp == "all" {
 		run = order

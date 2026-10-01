@@ -50,6 +50,24 @@ type Intent struct {
 	Height    int64      `json:"height"`
 }
 
+// Reputation is the lifetime record of one submitter identity. Unlike
+// Intents and Attempts it is NEVER pruned: it is the on-chain evidence
+// from which a trust policy (docs/analysis/02_cost.md §8) can compute an
+// accepted/attempted ratio per identity. Rejections are not visible
+// directly (a refused review never reaches the chain); Intents counts
+// every review the identity committed to under a RequireIntent policy,
+// so Accepted/Intents is the acceptance ratio where intents are required.
+type Reputation struct {
+	// Intents is the number of ReviewIntents this identity registered.
+	Intents uint64 `json:"intents"`
+	// Accepted is the number of commits this identity got accepted
+	// (including genesis commits of repositories it created).
+	Accepted uint64 `json:"accepted"`
+	// FirstHeight is the height of the first transaction that created
+	// this record.
+	FirstHeight int64 `json:"first_height"`
+}
+
 // State is the full replicated state. Everything in it is a deterministic
 // function of the sequence of finalized blocks.
 type State struct {
@@ -64,27 +82,35 @@ type State struct {
 	// Attempts counts ReviewIntents per attemptKey. Entries are pruned
 	// together with intents when a branch head or policy changes.
 	Attempts map[string]int `json:"attempts"`
+	// Reputation by hex submitter public key. Never pruned.
+	Reputation map[string]*Reputation `json:"reputation"`
 }
 
 // NewState returns an empty state.
 func NewState(chainID string) *State {
 	return &State{
-		ChainID:  chainID,
-		Repos:    map[string]*Repo{},
-		Intents:  map[string]*Intent{},
-		Attempts: map[string]int{},
+		ChainID:    chainID,
+		Repos:      map[string]*Repo{},
+		Intents:    map[string]*Intent{},
+		Attempts:   map[string]int{},
+		Reputation: map[string]*Reputation{},
 	}
 }
 
 // Clone returns a copy that can be mutated independently.
 func (s *State) Clone() *State {
 	c := &State{
-		ChainID:  s.ChainID,
-		Height:   s.Height,
-		AppHash:  append([]byte(nil), s.AppHash...),
-		Repos:    make(map[string]*Repo, len(s.Repos)),
-		Intents:  make(map[string]*Intent, len(s.Intents)),
-		Attempts: make(map[string]int, len(s.Attempts)),
+		ChainID:    s.ChainID,
+		Height:     s.Height,
+		AppHash:    append([]byte(nil), s.AppHash...),
+		Repos:      make(map[string]*Repo, len(s.Repos)),
+		Intents:    make(map[string]*Intent, len(s.Intents)),
+		Attempts:   make(map[string]int, len(s.Attempts)),
+		Reputation: make(map[string]*Reputation, len(s.Reputation)),
+	}
+	for k, v := range s.Reputation {
+		rc := *v
+		c.Reputation[k] = &rc
 	}
 	for k, r := range s.Repos {
 		rc := *r
@@ -132,20 +158,34 @@ func (s *State) pruneIntents(repo, branch string) {
 	}
 }
 
+// reputationOf returns the record of a submitter, creating it (at the
+// given height) if absent. Only call after validation: creating the
+// record is a mutation.
+func (s *State) reputationOf(pubKey []byte, height int64) *Reputation {
+	k := hex.EncodeToString(pubKey)
+	r, ok := s.Reputation[k]
+	if !ok {
+		r = &Reputation{FirstHeight: height}
+		s.Reputation[k] = r
+	}
+	return r
+}
+
 // hashView is what the app hash commits to. Height and AppHash themselves
 // are excluded (CometBFT already chains them through block headers).
 type hashView struct {
-	ChainID  string             `json:"chain_id"`
-	Repos    map[string]*Repo   `json:"repos"`
-	Intents  map[string]*Intent `json:"intents"`
-	Attempts map[string]int     `json:"attempts"`
+	ChainID    string                 `json:"chain_id"`
+	Repos      map[string]*Repo       `json:"repos"`
+	Intents    map[string]*Intent     `json:"intents"`
+	Attempts   map[string]int         `json:"attempts"`
+	Reputation map[string]*Reputation `json:"reputation"`
 }
 
 // ComputeAppHash returns the hash of the state. encoding/json writes
 // struct fields in declaration order and map keys in sorted order, so the
 // encoding is canonical.
 func (s *State) ComputeAppHash() []byte {
-	b, err := json.Marshal(hashView{s.ChainID, s.Repos, s.Intents, s.Attempts})
+	b, err := json.Marshal(hashView{s.ChainID, s.Repos, s.Intents, s.Attempts, s.Reputation})
 	if err != nil {
 		panic("app: state marshal: " + err.Error())
 	}

@@ -1,0 +1,66 @@
+{
+ "repo": "reference/cometbft",
+ "good_requested": 60,
+ "commits_scanned": 144,
+ "skipped_by_reason": {
+  "deps_cap": 81,
+  "empty_diff": 1,
+  "render: opaque": 1,
+  "render: too_large": 1
+ },
+ "cases": 300,
+ "by_class": {
+  "good": 60,
+  "injected": 60,
+  "low_effort": 60,
+  "obviously_harmful": 60,
+  "subtly_harmful": 60
+ },
+ "good_by_category": {
+  "code": 40,
+  "deps": 10,
+  "docs": 4,
+  "tests": 6
+ },
+ "by_subclass": {
+  "drop_assertion": 23,
+  "drop_err_check": 12,
+  "env_exfil": 20,
+  "flip_comparison": 12,
+  "hardcoded_secret": 17,
+  "inj_comment_direct": 8,
+  "inj_comment_rule": 7,
+  "inj_commit_message": 8,
+  "inj_fake_boundary": 8,
+  "inj_fake_transcript": 7,
+  "inj_markdown": 8,
+  "inj_plus_drop_err": 7,
+  "inj_plus_remote_exec": 7,
+  "msg_fix": 20,
+  "remote_exec": 20,
+  "rm_repo": 20,
+  "timeout_1000x": 7,
+  "weaken_check": 12,
+  "whitespace_only": 17
+ },
+ "operator_not_applicable": {
+  "timeout_1000x": 5,
+  "whitespace_only": 3
+ },
+ "text_bytes_total_by_class": {
+  "good": 398700,
+  "injected": 425661,
+  "low_effort": 277344,
+  "obviously_harmful": 439068,
+  "subtly_harmful": 423687
+ },
+ "est_input_tokens_total": 954996,
+ "est_input_tokens_mean_by_class": {
+  "good": 2528,
+  "injected": 2699,
+  "low_effort": 1759,
+  "obviously_harmful": 2784,
+  "subtly_harmful": 2687
+ },
+ "tokens_per_byte_assumed": 0.3805
+}
